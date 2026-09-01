@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SGP Events Group - Crafting Every Event with Purpose and Style</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink:        #152238;
+  --ink-soft:   #1E304F;
+  --ink-line:   #34455F;
+  --paper:      #f8f6f2;
+  --paper-2:    #EEE9DD;
+  --brass:      #C5A880;
+  --brass-light:#ddd0b8;
+  --brass-dim:  #8B7350;
+  --text-dark:  #211F1D;
+  --text-muted: #6C685F;
+  --text-on-ink:#EFEAE0;
+  --text-on-ink-muted: #9BA3B8;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --maxw: 1240px;
+  --ease: cubic-bezier(.22,.68,.32,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+}
+body{
+  margin:0;
+  font-family:'Manrope',sans-serif;
+  background:var(--paper);
+  color:var(--text-dark);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+h1,h2,h3,h4{
+  font-family:'Fraunces',serif;
+  font-weight:500;
+  line-height:1.05;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+p{ margin:0; line-height:1.65; }
+.container{ max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,64px); }
+section{ position:relative; }
+.eyebrow{
+  font-size:12.5px;
+  color:var(--brass-dim);
+  font-weight:700;
+  margin-bottom:14px;
+}
+.eyebrow.on-ink{ color:var(--brass-light); }
+.section-head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:32px;
+  margin-bottom:56px; flex-wrap:wrap;
+}
+.section-head h2{ font-size:clamp(32px,4vw,52px); max-width:640px; }
+.section-head .lede{ max-width:340px; color:var(--text-muted); font-size:15.5px; padding-bottom:6px; }
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:15px 28px; border-radius:999px; font-weight:600; font-size:14.5px;
+  border:1px solid transparent; transition:transform .35s var(--ease), background .3s, color .3s, border-color .3s;
+  white-space:nowrap;
+}
+.btn:active{ transform:scale(.97); }
+.btn-primary{ background:var(--brass); color:#161310; }
+.btn-primary:hover{ background:var(--brass-light); }
+.btn-outline{ border-color:currentColor; color:inherit; background:transparent; }
+.btn-outline:hover{ background:rgba(255,255,255,.08); }
+.btn-outline.dark:hover{ background:rgba(0,0,0,.06); }
+.btn svg{ width:16px; height:16px; }
+
+/* reveal-on-scroll */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+.reveal-stagger > *{ opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal-stagger.is-visible > *{ opacity:1; transform:translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(1){ transition-delay:.05s; }
+.reveal-stagger.is-visible > *:nth-child(2){ transition-delay:.13s; }
+.reveal-stagger.is-visible > *:nth-child(3){ transition-delay:.21s; }
+.reveal-stagger.is-visible > *:nth-child(4){ transition-delay:.29s; }
+.reveal-stagger.is-visible > *:nth-child(5){ transition-delay:.37s; }
+.reveal-stagger.is-visible > *:nth-child(6){ transition-delay:.45s; }
+
+/* ============================================================
+   PLACEHOLDER PHOTOGRAPHY FRAMES (abstract brass/ink editorial motif)
+   ============================================================ */
+.frame{
+  position:relative; overflow:hidden; border-radius:var(--radius-md);
+  background-color:var(--ink);
+  isolation:isolate;
+}
+.frame img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+}
+.frame::before{ /* grain */
+  content:''; position:absolute; inset:0; z-index:1; opacity:.5; mix-blend-mode:overlay;
+  background-image:radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
+  background-size:3px 3px;
+}
+.frame::after{ content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.35) 100%); }
+.frame .frame-icon{ position:absolute; z-index:2; opacity:.85; }
+.frame .frame-icon svg{ stroke:var(--brass-light); }
+.frame-cap{
+  position:absolute; left:18px; right:18px; bottom:16px; z-index:3;
+  color:var(--text-on-ink); font-family:'Fraunces',serif; font-size:19px; font-weight:500;
+}
+.frame-cap small{ display:block; font-family:'Manrope',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.03em; color:var(--brass-light); margin-bottom:4px; }
+
+.tone-a{ background:radial-gradient(120% 140% at 15% 10%, #3a2e18 0%, var(--ink) 55%), var(--ink); }
+.tone-b{ background:radial-gradient(120% 140% at 85% 100%, #4a3818 0%, var(--ink-soft) 55%), var(--ink-soft); }
+.tone-c{ background:linear-gradient(135deg, #2a2417 0%, var(--ink) 60%); }
+.tone-d{ background:radial-gradient(90% 120% at 50% 0%, #423419 0%, var(--ink) 60%); }
+.tone-e{ background:radial-gradient(100% 100% at 90% 10%, #574321 0%, var(--ink-soft) 65%); }
+.tone-f{ background:radial-gradient(100% 130% at 10% 100%, #40331a 0%, var(--ink) 55%); }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  padding:22px 0; transition:padding .4s var(--ease), background .4s var(--ease), box-shadow .4s var(--ease);
+}
+.nav .container{ display:flex; align-items:center; justify-content:space-between; }
+.nav.scrolled{ background:rgba(21,20,26,.92); backdrop-filter:blur(10px); padding:14px 0; box-shadow:0 8px 30px rgba(0,0,0,.18); }
+.logo{ font-family:'Fraunces',serif; font-size:21px; font-weight:600; color:var(--text-on-ink); letter-spacing:.01em; }
+.logo span{ color:var(--brass-light); }
+.nav-links{ display:flex; gap:38px; align-items:center; }
+.nav-links a{
+  color:var(--text-on-ink-muted); font-size:14px; font-weight:600; position:relative; padding:4px 0;
+  transition:color .3s;
+}
+.nav-links a::after{ content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--brass-light); transition:width .35s var(--ease); }
+.nav-links a:hover{ color:var(--text-on-ink); }
+.nav-links a:hover::after{ width:100%; }
+.nav-cta{ display:flex; align-items:center; gap:22px; }
+.nav-cta .btn{ padding:11px 22px; font-size:13.5px; }
+.burger{ display:none; flex-direction:column; gap:5px; background:none; border:0; padding:6px; z-index:210; }
+.burger span{ width:24px; height:2px; background:var(--text-on-ink); transition:transform .3s, opacity .3s; }
+.burger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+.mobile-menu{
+  position:fixed; inset:0; background:var(--ink); z-index:190;
+  display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:26px;
+  padding:0 32px; transform:translateY(-100%); transition:transform .5s var(--ease);
+}
+.mobile-menu.open{ transform:translateY(0); }
+.mobile-menu a{ font-family:'Fraunces',serif; font-size:32px; color:var(--text-on-ink); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end;
+  background:var(--ink); color:var(--text-on-ink); position:relative; padding-top:120px;
+  overflow:hidden;
+}
+.hero-visual{ position:absolute; inset:0; z-index:0; }
+.hero-visual .frame{ position:absolute; inset:0; border-radius:0; }
+.hero-beam{
+  position:absolute; z-index:1; pointer-events:none; border-radius:50%;
+  filter:blur(60px); opacity:.55;
+  background:radial-gradient(circle, rgba(203,166,105,.55), transparent 70%);
+}
+.hero-beam.b1{ width:640px; height:640px; top:-220px; left:-160px; }
+.hero-beam.b2{ width:480px; height:480px; bottom:-160px; right:-100px; opacity:.35; }
+.hero-content{ position:relative; z-index:2; padding-bottom:96px; }
+.hero-kicker{
+  display:flex; align-items:center; gap:12px; margin-bottom:26px;
+  font-size:13px; font-weight:700; color:var(--brass-light); letter-spacing:.02em;
+  opacity:0; transform:translateY(14px); animation:riseIn .9s var(--ease) .15s forwards;
+}
+.hero-kicker .dot{ width:6px; height:6px; border-radius:50%; background:var(--brass-light); }
+.hero h1{
+  font-size:clamp(44px,7.4vw,104px); max-width:15ch; font-weight:500;
+  opacity:0; transform:translateY(-28px); animation:fallIn 1s var(--ease) .3s forwards;
+}
+.hero-sub-row{
+  display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-top:38px; flex-wrap:wrap;
+}
+.hero-desc{
+  max-width:420px; color:var(--text-on-ink-muted); font-size:16.5px;
+}
+.hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+@keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
+@keyframes fallIn{
+  from{ opacity:0; transform:translateY(-28px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+.hero-scroll{
+  position:absolute; right:clamp(20px,5vw,64px); bottom:36px; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  color:var(--text-on-ink-muted); font-size:11.5px; font-weight:700; letter-spacing:.08em;
+  writing-mode:vertical-rl;
+  opacity:0; animation:riseIn 1s var(--ease) .8s forwards;
+}
+.hero-scroll .line{ writing-mode:vertical-rl; width:1px; height:56px; background:linear-gradient(var(--brass-light), transparent); }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about{ background:var(--paper); padding:90px 0 80px; isolation:isolate; }
+.about-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:72px; align-items:start; isolation:isolate; }
+.about-copy p{ color:var(--text-muted); font-size:16px; margin-top:22px; max-width:52ch; isolation:isolate; }
+.about-copy h2{ font-size:clamp(30px,4vw,46px); max-width:14ch; isolation:isolate;}
+.about-services{
+  margin-top:38px; display:grid; grid-template-columns:1fr 1fr; gap:10px 28px; padding-top:26px; border-top:1px solid rgba(0,0,0,.12);
+}
+.about-services div{
+  font-size:14.5px; font-weight:600; padding:9px 0; display:flex; align-items:center; gap:10px; color:var(--text-dark);
+}
+.about-services div::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--brass); flex-shrink:0; }
+.about-collage{ position:relative; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.about-collage .frame:nth-child(1){ aspect-ratio:3/4; grid-row:span 2; }
+.about-collage .frame:nth-child(2){ aspect-ratio:1/1; margin-top:44px; }
+.about-collage .frame:nth-child(3){ aspect-ratio:4/3; }
+
+/* ============================================================
+   SERVICES (bento-style asymmetric grid)
+   ============================================================ */
+.services{ background:var(--ink); color:var(--text-on-ink); padding:90px 0; isolation:isolate;}
+.svc-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:18px; }
+.svc-card{
+  grid-column:span 3; background:var(--ink-soft); border:1px solid var(--ink-line); border-radius:var(--radius-md);
+  padding:34px; display:flex; flex-direction:column; justify-content:space-between; min-height:260px;
+  transition:transform .4s var(--ease), background .4s var(--ease), border-color .4s, box-shadow .4s var(--ease);
+  position:relative; overflow:hidden;
+}
+.svc-card.wide{ grid-column:span 4; } .svc-card.narrow{ grid-column:span 2; }
+@media(min-width:900px){
+  .svc-card:nth-child(1){ grid-column:span 4; }
+  .svc-card:nth-child(2){ grid-column:span 2; }
+  .svc-card:nth-child(3){ grid-column:span 2; }
+  .svc-card:nth-child(4){ grid-column:span 4; }
+  .svc-card:nth-child(5){ grid-column:span 3; }
+  .svc-card:nth-child(6){ grid-column:span 3; }
+}
+.svc-card:hover{
+  transform: scale(1.04) translateY(-4px);
+  background: var(--ink);
+  border-color: var(--brass);
+  z-index: 2;
+  box-shadow: 0 24px 48px rgba(0,0,0,.4);
+}
+.svc-card .svc-glow{
+  position:absolute; width:220px; height:220px; border-radius:50%; right:-70px; top:-70px;
+  background:radial-gradient(circle, rgba(203,166,105,.16), transparent 70%);
+  transition:opacity .4s;
+}
+.svc-icon{ width:40px; height:40px; margin-bottom:26px; }
+.svc-icon svg{ stroke:var(--brass-light); width:100%; height:100%; transition:stroke .4s var(--ease); }
+.svc-card:hover .svc-icon svg{ stroke:var(--brass); }
+.svc-card h3{ font-size:23px; margin-bottom:12px; }
+.svc-card:hover h3{ color:var(--brass-light); transition:color .4s var(--ease); }
+.svc-card p{ color:var(--text-on-ink-muted); font-size:14.5px; max-width:38ch; }
+.svc-num{ position:absolute; top:24px; right:28px; font-family:'Fraunces',serif; font-size:13px; color:var(--ink-line); }
+
+/* ============================================================
+   EVENTS SLIDER
+   ============================================================ */
+.events-slider-wrap{ background:var(--paper); padding:60px 0 50px; overflow:hidden; }
+.carousel{ position:relative; }
+.carousel-track{
+  display:flex; gap:22px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px;
+  padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);
+  scrollbar-width:none;
+}
+.carousel-track::-webkit-scrollbar{ display:none; }
+.ev-slide{
+  scroll-snap-align:start; flex:0 0 auto; width:min(360px,80vw);
+}
+.ev-slide .frame{ aspect-ratio:3/4; margin-bottom:18px; }
+.ev-slide h4{ font-size:21px; margin-bottom:6px; }
+.ev-slide p{ color:var(--text-muted); font-size:14px; }
+.carousel-controls{ display:flex; justify-content:space-between; align-items:center; margin-top:34px; }
+.carousel-dots{ display:flex; gap:8px; }
+.carousel-dots button{
+  width:7px; height:7px; border-radius:50%; border:none; background:rgba(0,0,0,.18); padding:0; transition:background .3s, width .3s;
+}
+.carousel-dots button.active{ background:var(--brass); width:22px; border-radius:5px; }
+.carousel-arrows{ display:flex; gap:10px; }
+.arrow-btn{
+  width:48px; height:48px; border-radius:50%; border:1px solid rgba(0,0,0,.18); background:transparent;
+  display:flex; align-items:center; justify-content:center; transition:background .3s,border-color .3s,transform .2s;
+}
+.arrow-btn:hover{ background:var(--ink); border-color:var(--ink); }
+.arrow-btn:hover svg{ stroke:var(--text-on-ink); }
+.arrow-btn svg{ width:18px; height:18px; stroke:var(--text-dark); transition:stroke .3s; }
+.arrow-btn:active{ transform:scale(.92); }
+.on-ink .arrow-btn{ border-color:var(--ink-line); }
+.on-ink .arrow-btn svg{ stroke:var(--text-on-ink); }
+.on-ink .arrow-btn:hover{ background:var(--brass); border-color:var(--brass); }
+.on-ink .arrow-btn:hover svg{ stroke:#161310; }
+.on-ink .carousel-dots button{ background:var(--ink-line); }
+.on-ink .carousel-dots button.active{ background:var(--brass-light); }
+
+/* ============================================================
+   FEATURED PROJECT
+   ============================================================ */
+.featured{ background:var(--ink); color:var(--text-on-ink); padding:90px 0; isolation:isolate; }
+.feat-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; margin-bottom:48px; }
+.feat-title{ font-size:clamp(32px,5vw,58px); max-width:16ch; }
+.feat-meta{ display:flex; gap:36px; flex-wrap:wrap; }
+.feat-meta div{ font-size:13px; }
+.feat-meta div span{ display:block; color:var(--text-on-ink-muted); font-size:11.5px; font-weight:700; letter-spacing:.04em; margin-bottom:6px; }
+.feat-meta div strong{ font-family:'Fraunces',serif; font-weight:500; font-size:19px; }
+.feat-main{ display:grid; grid-template-columns:1.5fr 1fr; gap:20px; margin-bottom:20px; }
+.feat-main .frame{ aspect-ratio:16/10; }
+.feat-side{ display:grid; grid-template-rows:1fr 1fr; gap:20px; }
+.feat-side .frame{ aspect-ratio:auto; height:100%; }
+.feat-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:52px; }
+.feat-strip .frame{ aspect-ratio:1/1; cursor:zoom-in; }
+.feat-bottom{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+.feat-bottom p{ color:var(--text-on-ink-muted); font-size:16px; max-width:52ch; }
+.feat-highlights{ display:flex; flex-direction:column; gap:16px; }
+.feat-highlights li{ list-style:none; display:flex; gap:14px; align-items:flex-start; font-size:14.5px; color:var(--text-on-ink-muted); }
+.feat-highlights li svg{ flex-shrink:0; width:18px; height:18px; stroke:var(--brass-light); margin-top:2px; }
+.feat-bottom ul{ margin:0; padding:0; }
+
+/* Lightbox */
+.lightbox{
+  position:fixed; inset:0; background:rgba(10,9,7,.94); z-index:300; display:none;
+  align-items:center; justify-content:center; padding:40px;
+}
+.lightbox.open{ display:flex; }
+.lightbox-frame{ width:min(900px,90vw); aspect-ratio:16/10; position:relative; }
+.lightbox-close, .lightbox-prev, .lightbox-next{
+  position:absolute; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:50%;
+  width:46px; height:46px; display:flex; align-items:center; justify-content:center; transition:background .3s;
+}
+.lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover{ background:rgba(255,255,255,.18); }
+.lightbox-close svg,.lightbox-prev svg,.lightbox-next svg{ width:18px; height:18px; stroke:#EDE9DD; }
+.lightbox-close{ top:-64px; right:0; }
+.lightbox-prev{ left:-64px; top:50%; transform:translateY(-50%); }
+.lightbox-next{ right:-64px; top:50%; transform:translateY(-50%); }
+@media(max-width:760px){
+  .lightbox-prev{ left:8px; } .lightbox-next{ right:8px; } .lightbox-close{ top:8px; right:8px; }
+}
+
+/* ============================================================
+   PORTFOLIO
+   ============================================================ */
+.portfolio{ background:var(--paper); padding:140px 0; }
+.filters{ display:flex; gap:10px; margin-bottom:44px; flex-wrap:wrap; }
+.filter-btn{
+  padding:10px 20px; border-radius:999px; border:1px solid rgba(0,0,0,.15); background:transparent; font-size:13.5px; font-weight:600;
+  color:var(--text-muted); transition:all .3s;
+}
+.filter-btn.active, .filter-btn:hover{ background:var(--ink); color:var(--text-on-ink); border-color:var(--ink); }
+.masonry{ column-count:3; column-gap:20px; }
+.pf-item{
+  break-inside:avoid; margin-bottom:20px; position:relative; border-radius:var(--radius-md); overflow:hidden;
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+}
+.pf-item.hide{ display:none; }
+.pf-item .frame{ transition:transform .6s var(--ease); }
+.pf-item:hover .frame{ transform:scale(1.045); }
+.pf-overlay{
+  position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; justify-content:flex-end; padding:22px;
+  background:linear-gradient(180deg, transparent 40%, rgba(10,9,7,.85) 100%);
+  opacity:0; transition:opacity .4s;
+}
+.pf-item:hover .pf-overlay{ opacity:1; }
+.pf-overlay .pf-cat{ font-size:11.5px; font-weight:700; letter-spacing:.04em; color:var(--brass-light); margin-bottom:6px; }
+.pf-overlay h4{ color:var(--text-on-ink); font-size:20px; }
+.pf-overlay .pf-loc{ color:var(--text-on-ink-muted); font-size:13px; margin-top:4px; }
+@media(max-width:900px){ .masonry{ column-count:2; } }
+@media(max-width:560px){ .masonry{ column-count:1; } }
+
+/* ============================================================
+   WHY CHOOSE
+   ============================================================ */
+.why{ background:var(--ink); color:var(--text-on-ink); padding:140px 0; isolation:isolate; }
+.why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--ink-line); border:1px solid var(--ink-line); }
+.why-item{
+  background:var(--ink); padding:44px 36px; position:relative;
+  transition: transform .4s var(--ease), background .4s var(--ease), box-shadow .4s var(--ease);
+}
+.why-item:hover{
+  transform: scale(1.05);
+  background: var(--ink-soft);
+  z-index: 2;
+  box-shadow: 0 24px 48px rgba(0,0,0,.4);
+}
+.why-item .why-icon{ width:34px; height:34px; margin-bottom:24px; }
+.why-item .why-icon svg{ stroke:var(--brass-light); width:100%; height:100%; }
+.why-item h3{ font-size:20px; margin-bottom:10px; }
+.why-item p{ color:var(--text-on-ink-muted); font-size:14.5px; }
+@media(max-width:860px){ .why-grid{ grid-template-columns:1fr 1fr; } }
+@media(max-width:560px){ .why-grid{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   PROCESS TIMELINE
+   ============================================================ */
+.process{ background:var(--paper); padding:60px 0; }
+.timeline{ position:relative; }
+.timeline-line{ position:absolute; left:28px; top:10px; bottom:10px; width:1px; background:rgba(0,0,0,.15); }
+.tl-item{ display:grid; grid-template-columns:56px 1fr; gap:28px; padding:34px 0; position:relative; }
+.tl-item:not(:last-child){ border-bottom:1px solid rgba(0,0,0,.08); }
+.tl-num{
+  width:56px; height:56px; border-radius:50%; background:var(--paper); border:1px solid rgba(0,0,0,.15);
+  display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:16px; z-index:1;
+  transition:background .4s,color .4s,border-color .4s;
+}
+.tl-item.is-visible .tl-num{ background:var(--brass); color:#161310; border-color:var(--brass); }
+.tl-body{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.tl-body h3{ font-size:26px; margin-bottom:8px; }
+.tl-body p{ color:var(--text-muted); max-width:46ch; font-size:15px; }
+.tl-tag{ font-size:12px; font-weight:700; color:var(--brass-dim); letter-spacing:.04em; white-space:nowrap; padding-top:6px; }
+
+/* ============================================================
+   EVENT GALLERY SLIDER
+   ============================================================ */
+.gallery{ background:var(--ink); color:var(--text-on-ink); padding:90px 0; overflow:hidden; isolation:isolate; }
+.gal-slide{ flex:0 0 auto; width:min(420px,78vw); }
+.gal-slide .frame{ aspect-ratio:4/5; }
+.gal-slide .frame-cap{ font-size:16px; }
+
+/* ============================================================
+   CLIENTS
+   ============================================================ */
+.clients{ background:var(--paper); padding:100px 0 110px; overflow:hidden; }
+.clients-head{ text-align:center; margin-bottom:52px; }
+.clients-head .eyebrow{ text-align:center; }
+.clients-head h2{ font-size:clamp(26px,3vw,36px); }
+.logo-track{ display:flex; gap:70px; align-items:center; width:max-content; animation:scrollLogos 34s linear infinite; }
+.logo-track:hover{ animation-play-state:paused; }
+.logo-wrap{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent); mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }
+.logo-item{ font-family:'Fraunces',serif; font-size:24px; color:var(--text-muted); opacity:.55; white-space:nowrap; letter-spacing:.02em; }
+@keyframes scrollLogos{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* ============================================================
+   CTA BAND
+   ============================================================ */
+.cta-band{ position:relative; background:var(--ink); color:var(--text-on-ink); padding:110px 0; overflow:hidden; isolation:isolate; }
+.cta-band .frame{ position:absolute; inset:0; border-radius:0; opacity:.9; }
+.cta-content{ position:relative; z-index:2; text-align:center; max-width:760px; margin:0 auto; }
+.cta-content h2{ font-size:clamp(38px,6vw,68px); margin-bottom:22px; }
+.cta-content p{ color:var(--text-on-ink-muted); font-size:17px; max-width:56ch; margin:0 auto 40px; }
+.cta-btns{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact{ background:var(--paper); padding:90px 0; }
+.contact-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:80px; }
+.contact-info h2{ font-size:clamp(30px,4vw,46px); margin-bottom:20px; max-width:12ch; }
+.contact-info p{ color:var(--text-muted); font-size:15.5px; max-width:40ch; margin-bottom:40px; }
+.contact-detail{ margin-bottom:26px; }
+.contact-detail span{ display:block; font-size:11.5px; font-weight:700; letter-spacing:.04em; color:var(--brass-dim); margin-bottom:6px; }
+.contact-detail a, .contact-detail div{ font-family:'Fraunces',serif; font-size:20px; }
+.social-row{ display:flex; gap:14px; margin-top:36px; }
+.social-row a{
+  width:42px; height:42px; border-radius:50%; border:1px solid rgba(0,0,0,.16); display:flex; align-items:center; justify-content:center;
+  transition:background .3s, border-color .3s;
+}
+.social-row a:hover{ background:var(--ink); border-color:var(--ink); }
+.social-row a:hover svg{ stroke:var(--text-on-ink); }
+.social-row svg{ width:17px; height:17px; stroke:var(--text-dark); transition:stroke .3s; }
+
+.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.form-field{ display:flex; flex-direction:column; gap:8px; grid-column:span 1; }
+.form-field.full{ grid-column:span 2; }
+.form-field label{ font-size:12.5px; font-weight:700; color:var(--text-muted); letter-spacing:.02em; }
+.form-field input, .form-field select, .form-field textarea{
+  background:transparent; border:none; border-bottom:1px solid rgba(0,0,0,.22); padding:11px 2px;
+  font-family:'Manrope',sans-serif; font-size:15.5px; color:var(--text-dark); transition:border-color .3s;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus{ outline:none; border-color:var(--brass); }
+.form-field textarea{ resize:vertical; min-height:90px; }
+.form-submit{ grid-column:span 2; margin-top:12px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.form-note{ font-size:13px; color:var(--text-muted); opacity:0; transition:opacity .3s; }
+.form-note.show{ opacity:1; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30px; }
+.footer-top{ display:grid; grid-template-columns:1.3fr .7fr 1fr; gap:50px; padding-bottom:56px; border-bottom:1px solid var(--ink-line); }
+.footer-brand .logo{ margin-bottom:16px; display:inline-block; }
+.footer-brand p{ font-size:14.5px; max-width:34ch; }
+.footer-col h4{ font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; color:var(--text-on-ink); letter-spacing:.03em; margin-bottom:18px; }
+.footer-col a{ display:block; font-size:14.5px; margin-bottom:12px; transition:color .3s; }
+.footer-col a:hover{ color:var(--text-on-ink); }
+.footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:28px; flex-wrap:wrap; gap:14px; font-size:13px; }
+.footer-social{ display:flex; gap:12px; }
+.footer-social a{ width:38px; height:38px; border-radius:50%; border:1px solid var(--ink-line); display:flex; align-items:center; justify-content:center; transition:background .3s,border-color .3s; }
+.footer-social a:hover{ background:var(--brass); border-color:var(--brass); }
+.footer-social a:hover svg{ stroke:#161310; }
+.footer-social svg{ width:15px; height:15px; stroke:var(--text-on-ink-muted); transition:stroke .3s; }
+@media(max-width:760px){ .footer-top{ grid-template-columns:1fr; gap:36px; } }
+.mbs-icon{ stroke:var(--brass-light); flex-shrink:0; }
+/* Back to top */
+.back-top{
+  position:fixed; right:26px; bottom:26px; z-index:150; width:50px; height:50px; border-radius:50%;
+  background:var(--ink); border:1px solid var(--ink-line); display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity .4s,transform .4s,background .3s;
+}
+.back-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
+.back-top:hover{ background:var(--brass); }
+.back-top:hover svg{ stroke:#161310; }
+.back-top svg{ width:18px; height:18px; stroke:var(--text-on-ink); transition:stroke .3s; }
+.paper-accent{
+  position:absolute; pointer-events:none; z-index:-1;
+  border:1px solid var(--brass);
+  border-radius:50%;
+  opacity:.12;
+}
+.typing-cursor::after{
+  content:'|';
+  display:inline-block;
+  margin-left:2px;
+  animation: blinkCursor .8s step-start infinite;
+  color: var(--brass-light);
+}
+@keyframes blinkCursor{
+  50%{ opacity:0; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:980px){
+  .nav-links{ display:none; }
+  .burger{ display:flex; }
+  .about-grid, .contact-grid, .feat-bottom{ grid-template-columns:1fr; gap:44px; }
+  .svc-grid{ grid-template-columns:1fr 1fr; }
+  .svc-card:nth-child(n){ grid-column:span 1 !important; }
+  .feat-main{ grid-template-columns:1fr; }
+  .feat-side{ grid-template-rows:1fr; grid-template-columns:1fr 1fr; }
+  .feat-strip{ grid-template-columns:repeat(2,1fr); }
+  .why-grid{ }
+  .form-grid{ grid-template-columns:1fr; }
+  .form-field.full, .form-submit{ grid-column:span 1; }
+}
+@media(max-width:600px){
+  .hero-content{ padding-bottom:56px; }
+  .hero-sub-row{ flex-direction:column; align-items:flex-start; }
+  .about{ padding:110px 0 90px; }
+  .services, .featured, .why, .process, .gallery, .portfolio, .contact, .cta-band, .events-slider-wrap{ padding-top:90px; padding-bottom:90px; }
+  .feat-meta{ gap:22px; }
+  .tl-body{ flex-direction:column; }
+}
+.feat-main .frame img,
+.feat-strip .frame img{
+  transition: transform .6s var(--ease);
+}
+.feat-main .frame:hover img,
+.feat-strip .frame:hover img{
+  transform: scale(1.08);
+}
+.hero-particle{
+  position:absolute; top:-40px; border-radius:50%;
+  background:radial-gradient(circle, rgba(220,184,104,.9), rgba(220,184,104,0) 70%);
+  filter:blur(1px);
+  opacity:0;
+  animation-name: heroFloatDown;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes heroFloatDown{
+  0%{ transform:translateY(0) translateX(0); opacity:0; }
+  10%{ opacity:.75; }
+  85%{ opacity:.45; }
+  100%{ transform:translateY(120vh) translateX(var(--drift)); opacity:0; }
+}
+.bokeh-particles{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+@media (prefers-reduced-motion: reduce){
+  .hero-particles, .bokeh-particles{ display:none; }
+}
+.typing-cursor::after{
+  content:'|';
+  display:inline-block;
+  margin-left:2px;
+  animation: blinkCursor .8s step-start infinite;
+  color: var(--brass-light);
+}
+@keyframes blinkCursor{
+  50%{ opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#home" class="logo">SGP <span>Events Group</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#events">Events</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Let's Talk</a>
+      <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#events">Events</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+     
+<header class="hero" id="home">
+  <div class="hero-visual">
+    <div class="frame tone-a"></div>
+    <div class="hero-beam b1"></div>
+    <div class="hero-beam b2"></div>
+  </div>
+  <div class="container hero-content">
+    <!-- <div class="hero-kicker"><span class="dot"></span>SINGAPORE · EVENT PLANNING &amp; DESIGN</div> -->
+    <div class="hero-kicker">
+  <svg class="merlion-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.3" width="15" height="15">
+    <path d="M8 6.2c0-1.3.9-2.2 1.8-2.2.6 0 .8.7 1.2.7s.6-.7 1.2-.7c.9 0 1.8.9 1.8 2.2"/>
+    <circle cx="11" cy="7.6" r="2.4"/>
+    <path d="M13.3 7.6h1.4M15 6.3c.7-.3 1.2.2 1.2.9"/>
+    <path d="M9 9.6c-1 1.8-.9 4.3.7 5.9 1.7 1.7 4.2 1.8 5.9.8-2.6 0-4.3-.9-5.2-2.6-.6-1.2-.6-2.4-1.4-4.1z"/>
+    <path d="M9.8 12.3l.9.9M10.8 14l.9.9"/>
+  </svg>
+  SGP · EVENT PLANNING &amp; DESIGN
+</div>
+    <h1>Crafting every event with purpose and style.</h1>
+    <div class="hero-sub-row">
+      <p class="hero-desc">SGP Events Group designs and produces memorable events end to end - from boardroom summits and brand launches to poolside galas, candlelit anniversary dinners, and the birthday table for twelve. You bring the vision; we build the experience around it.</p>
+      <div class="hero-ctas">
+        <a href="#portfolio" class="btn btn-outline">Explore Our Events</a>
+        <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL<span class="line"></span></div>
+</header>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-copy reveal">
+      <div class="eyebrow">About SGP</div>
+      <h2>An event organizer built around one idea — get every detail right.</h2>
+      <p>SGP Events Group is a Singapore-based event organizer and management company. We help clients plan, build, and run events from the first concept sketch to the last guest leaving the room — covering everything a serious event needs and nothing it doesn't.</p>
+      <p>We work across two worlds at once: structured corporate programs that need precision, and personal celebrations — gala dinners, wedding anniversaries, milestone birthdays — that need warmth and a distinct visual signature. Both get the same standard of planning, delivered in our signature black, white, and gold.</p>
+      <div class="about-services">
+        <div>Event planning</div>
+        <div>Concept development</div>
+        <div>Event production</div>
+        <div>Event management</div>
+        <div>Vendor coordination</div>
+        <div>On-site execution</div>
+      </div>
+    </div>
+    <div class="about-collage reveal">
+      <div class="frame tone-b">
+        <div class="frame-icon" style="left:24px; bottom:24px; width:30px; height:30px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="7" width="18" height="12" rx="1"/><circle cx="12" cy="13" r="3.2"/><path d="M8 7l1.6-2.5h4.8L16 7"/></svg></div>
+      </div>
+      <div class="frame tone-d">
+        <div class="frame-icon" style="right:22px; top:22px; width:28px; height:28px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M4 20c1-4 4-6 8-6s7 2 8 6"/><circle cx="12" cy="8" r="4"/></svg></div>
+      </div>
+      <div class="frame tone-e">
+        <div class="frame-icon" style="left:22px; top:22px; width:28px; height:28px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>What we do</h2>
+      <p class="lede">Six ways we can shape your event, from a single evening to a multi-day program.</p>
+    </div>
+    <div class="svc-grid reveal-stagger">
+      <div class="svc-card">
+        <div class="svc-glow"></div>
+        <div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <h3>Corporate Events</h3>
+          <p>Conferences, seminars, meetings, and business gatherings run with the precision your company's name deserves.</p>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-glow"></div>
+        <div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 19V9l8-5 8 5v10"/><path d="M9 19v-6h6v6"/></svg></div>
+          <h3>Conferences &amp; Summits</h3>
+          <p>Full planning and execution for industry summits and forums, from stage design to speaker logistics.</p>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-glow"></div>
+        <div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M3 20h18M5 20V9l4-3 4 3v11M13 20v-6h4v6"/></svg></div>
+          <h3>Exhibitions &amp; Brand Events</h3>
+          <p>Exhibitions, product launches, and activations that put a brand's story on the floor in three dimensions.</p>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-glow"></div>
+        <div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M8 21h8M12 21V13M6 3h12l-1.5 6a4.5 4.5 0 01-9 0z"/><path d="M6 5H3a4 4 0 004 4M18 5h3a4 4 0 01-4 4"/></svg></div>
+          <h3>Gala Dinner &amp; Awards</h3>
+          <p>Elegant gala dinners and award ceremonies, built to make a room feel formal without feeling stiff.</p>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-glow"></div>
+        <div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 21s-7-4.35-9.5-8.3C.9 9.2 2.4 5.7 6 5.1 8.2 4.7 10.3 5.8 12 8c1.7-2.2 3.8-3.3 6-2.9 3.6.6 5.1 4.1 3.5 7.6C19 16.65 12 21 12 21z"/></svg></div>
+          <h3>Private Celebrations</h3>
+          <p>Birthdays, anniversaries, and intimate gatherings, planned with the same care as a 500-guest program.</p>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-glow"></div>
+        <div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.6 2.6"/></svg></div>
+          <h3>Custom Events</h3>
+          <p>Anything that doesn't fit a category — tailor-made around your objective, audience, and budget.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVENTS WE CREATE — SLIDER
+     ============================================================ -->
+     <section class="events-slider-wrap" id="events">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Events we create</h2>
+          <p class="lede">Ten formats, one standard of execution. Drag, swipe, or use the arrows.</p>
+        </div>
+      </div>
+      <div class="carousel" data-carousel>
+        <div class="carousel-track" data-track>
+          <!-- slides injected by JS from EVENT_TYPES -->
+        </div>
+        <div class="container">
+          <div class="carousel-controls">
+            <div class="carousel-dots" data-dots></div>
+            <div class="carousel-arrows">
+              <button class="arrow-btn" data-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="arrow-btn" data-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- ============================================================
+     FEATURED PROJECT
+     ============================================================ -->
+<section class="featured" id="featured">
+  <div class="container">
+    <div class="feat-top reveal">
+      <div>
+        <div class="eyebrow on-ink">Our Recent Project</div>
+        <h2 class="feat-title">Indonesia MRO Summit 2026</h2>
+      </div>
+      <div class="feat-meta">
+        <div><span>Location</span><strong>Radisson Golf & Convention Center Batam, Indonesia</strong></div>
+        <div><span>Date</span><strong>9 June 2026 – 10 June 2026</strong></div>
+        <div><span>Guests</span><strong data-counter="300" data-suffix="+">0</strong></div>
+        <div><span>Format</span><strong>MRO Summit</strong></div>
+      </div>
+    </div>
+
+    <div class="feat-main reveal">
+      <div class="frame tone-c" style="aspect-ratio:16/10;">
+        <img src="images/_SRT0723.JPG" alt="">
+        <div class="frame-icon" style="left:30px; bottom:30px; width:34px; height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M2 17c1.5-1.3 3-1.3 4.5 0s3 1.3 4.5 0 3-1.3 4.5 0 3 1.3 4.5 0"/><path d="M6 13V6a2 2 0 012-2h3l5 5v4"/></svg></div>
+      </div>
+      <div class="feat-side">
+        <div class="frame tone-d">
+          <img src="images/IMROS-00497.jpg" alt="">
+        </div>
+        <div class="frame tone-e">
+          <img src="images/IMROS-00274.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    
+    <div class="feat-strip reveal" data-gallery>
+      <div class="frame tone-a" data-lightbox-item>
+        <img src="images/IMROS-0100.jpg" alt="">
+      </div>
+      <div class="frame tone-b" data-lightbox-item>
+        <img src="images/IMROS-1163.jpg" alt="">
+      </div>
+      <div class="frame tone-d" data-lightbox-item>
+        <img src="images/IMROS-00497.jpg" alt="">
+      </div>
+      <div class="frame tone-e" data-lightbox-item>
+        <img src="images/IMROS-00274.jpg" alt="">
+      </div>
+    </div>
+
+    <div class="feat-bottom reveal">
+      <div>
+        <h3 style="font-size:24px; margin-bottom:16px;">About the event</h3>
+        <p>To mark a couple's 25th wedding anniversary, SGP designed a poolside gala for 120 guests on the shore of Sentosa — candlelit tablescapes, a fairy-light canopy over the water, and a live string quartet carrying the evening from cocktails through to the final dance. SGP was engaged as full-service producer, responsible for concept, décor design, and on-site execution.</p>
+        <div style="margin-top:28px;">
+          <a href="#contact" class="btn btn-outline" style="color:var(--text-on-ink);">Explore the Event</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:24px; margin-bottom:16px;">SGP's role &amp; highlights</h3>
+        <ul class="feat-highlights">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>Full event production, from concept to breakdown</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>Poolside stage, floral arch, and fairy-light canopy design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>Candlelit tablescapes styled in black, white, and gold</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>Live music, catering, and guest-flow coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-frame">
+    <button class="lightbox-close" data-lb-close><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lightbox-prev" data-lb-prev><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="frame" id="lightboxFrame" style="width:100%;height:100%;"></div>
+    <button class="lightbox-next" data-lb-next><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<!-- ============================================================
+     PORTFOLIO
+     ============================================================ -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Our event portfolio</h2>
+      <p class="lede">A selection of programs across corporate, conference, exhibition, gala, and private work.</p>
+    </div>
+    <div class="filters reveal" data-filters>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="corporate">Corporate</button>
+      <button class="filter-btn" data-filter="conference">Conference</button>
+      <button class="filter-btn" data-filter="exhibition">Exhibition</button>
+      <button class="filter-btn" data-filter="gala">Gala</button>
+      <button class="filter-btn" data-filter="private">Private</button>
+    </div>
+    <div class="masonry" data-masonry>
+      <!-- injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY CHOOSE SGP
+     ============================================================ -->
+<section class="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 style="color:var(--text-on-ink);">Why clients choose SGP</h2>
+    </div>
+  </div>
+  <div class="container" style="padding-left:0;padding-right:0;">
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
+        <h3>End-to-end management</h3>
+        <p>From the first concept meeting to final teardown — one team accountable for the whole thing.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
+        <h3>Creative concepts</h3>
+        <p>Events designed around your goals and audience, not pulled from a template.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Professional execution</h3>
+        <p>Detailed run-sheets and strong on-site coordination, so the day runs the way it was planned.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M2 20c0-3 2.5-5 5-5s5 2 5 5M12 20c0-3 2.5-5 5-5s5 2 5 5"/></svg></div>
+        <h3>Reliable partners</h3>
+        <p>A trusted network of vendors, venues, and production crews built over years, not booked cold.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 12h16M4 6h10M4 18h13"/></svg></div>
+        <h3>Flexible solutions</h3>
+        <p>Programs scaled to fit different objectives, guest counts, and budgets — without cutting corners.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 21s-7-4.35-9.5-8.3C.9 9.2 2.4 5.7 6 5.1 8.2 4.7 10.3 5.8 12 8c1.7-2.2 3.8-3.3 6-2.9 3.6.6 5.1 4.1 3.5 7.6C19 16.65 12 21 12 21z"/></svg></div>
+        <h3>Memorable experiences</h3>
+        <p>Events people are still talking about weeks after the lights come down.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CLIENTS
+     ============================================================ -->
+<section class="clients">
+  <div class="clients-head container">
+    <div class="eyebrow">Trusted By</div>
+    <h2>Companies and organizations we've worked with</h2>
+  </div>
+  <div class="logo-wrap">
+    <div class="logo-track" id="logoTrack">
+      <div class="logo-item">ARKA GROUP</div>
+      <div class="logo-item">NORDIKA</div>
+      <div class="logo-item">VELA CAPITAL</div>
+      <div class="logo-item">PRISMA</div>
+      <div class="logo-item">KAWAN CORP</div>
+      <div class="logo-item">LUMINA</div>
+      <div class="logo-item">SATRIA HOLDINGS</div>
+      <div class="logo-item">ORBIT MEDIA</div>
+      <!-- duplicated for seamless loop via JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BAND
+     ============================================================ -->
+<section class="cta-band">
+  <div class="frame tone-d"></div>
+  <div class="container cta-content reveal">
+    <h2>Let's create something remarkable.</h2>
+    <p>Whether you're planning a corporate summit, gala dinner, brand event, or private celebration, SGP is ready to bring your vision to life.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+      <a href="#portfolio" class="btn btn-outline">View Our Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <div class="eyebrow">Contact</div>
+      <h2>Tell us about your event.</h2>
+      <p>Share a few details and our team will get back to you within one business day to schedule an initial conversation.</p>
+
+      <div class="contact-detail"><span>Email</span><a href="mailto:hello@sgpevents.sg">hello@sgpevents.com</a></div>
+      <div class="contact-detail"><span>Phone / WhatsApp</span><a href="tel:+628000000">+628000000</a></div>
+      <div class="contact-detail"><span>Website</span><a href="#">www.sgp_events.com</a></div>
+      <div class="contact-detail"><span>Studio</span><div>Indonesia</div></div>
+
+      <div class="social-row">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-grid">
+        <div class="form-field"><label>Name</label><input type="text" required placeholder="Your full name"></div>
+        <div class="form-field"><label>Company</label><input type="text" placeholder="Company (optional)"></div>
+        <div class="form-field"><label>Email</label><input type="email" required placeholder="you@company.com"></div>
+        <div class="form-field"><label>Phone</label><input type="tel" placeholder="+62"></div>
+        <div class="form-field"><label>Event Type</label>
+          <select>
+            <option>Corporate Event</option>
+            <option>Conference / Summit</option>
+            <option>Exhibition / Brand Event</option>
+            <option>Gala Dinner / Awards</option>
+            <option>Private Celebration</option>
+            <option>Custom Event</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Event Date</label><input type="date"></div>
+        <div class="form-field full"><label>Message</label><textarea placeholder="Tell us a little about what you're planning..."></textarea></div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <span class="form-note" id="formNote">Thank you — this is a portfolio mockup, so no message was actually sent.</span>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="logo">SGP <span>Events Group</span></a>
+        <p>An event organizer and production company based in Singapore, crafting corporate and private events with purpose and style.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#events">Events</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <a href="#">Jakarta, Indonesia</a>
+        <a href="mailto:hello@sgpevents.sg">hello@sgpevents.com</a>
+        <a href="tel:+6561234567">+63 8880000</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 SGP Events Group. All Rights Reserved.</div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const ICONS = {
+  mic:   `<path d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z"/><path d="M19 11a7 7 0 01-14 0M12 18v3"/>`,
+  camera:`<rect x="3" y="7" width="18" height="12" rx="1"/><circle cx="12" cy="13" r="3.2"/><path d="M8 7l1.6-2.5h4.8L16 7"/>`,
+  spark: `<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>`,
+  glass: `<path d="M8 21h8M12 21V13M6 3h12l-1.5 6a4.5 4.5 0 01-9 0z"/><path d="M6 5H3a4 4 0 004 4M18 5h3a4 4 0 01-4 4"/>`,
+  seats: `<path d="M4 19V9l8-5 8 5v10"/><path d="M9 19v-6h6v6"/>`,
+  trophy:`<path d="M8 21h8M12 21v-6M7 4h10v4a5 5 0 01-10 0z"/><path d="M7 6H4a4 4 0 004 4M17 6h3a4 4 0 01-4 4"/>`,
+  booth: `<path d="M3 20h18M5 20V9l4-3 4 3v11M13 20v-6h4v6"/>`,
+  balloon:`<path d="M12 15a5 5 0 100-10 5 5 0 000 10z"/><path d="M12 15l-1 6 2 0-1-6z"/>`,
+  ring:  `<circle cx="9" cy="15" r="4"/><circle cx="16" cy="12" r="3"/>`,
+  network:`<circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M2 20c0-3 2.5-5 5-5s5 2 5 5M12 20c0-3 2.5-5 5-5s5 2 5 5"/>`,
+  curtain:`<path d="M4 4v16M20 4v16M4 4c4 3 4 7 0 10M20 4c-4 3-4 7 0 10"/>`,
+  heart: `<path d="M12 21s-7-4.35-9.5-8.3C.9 9.2 2.4 5.7 6 5.1 8.2 4.7 10.3 5.8 12 8c1.7-2.2 3.8-3.3 6-2.9 3.6.6 5.1 4.1 3.5 7.6C19 16.65 12 21 12 21z"/>`,
+  pool:  `<path d="M2 17c1.5-1.3 3-1.3 4.5 0s3 1.3 4.5 0 3-1.3 4.5 0 3 1.3 4.5 0"/><path d="M6 13V6a2 2 0 012-2h3l5 5v4"/>`,
+  candle:`<path d="M9 21h6M12 21V9M9 9h6l-1-3h-4z"/><path d="M12 6c-1-1.4-1-2.6 0-4 1 1.4 1 2.6 0 4z"/>`,
+  lights:`<path d="M3 5c4 3 14 3 18 0"/><circle cx="6" cy="10" r="1.4"/><circle cx="11" cy="12" r="1.4"/><circle cx="16" cy="10" r="1.4"/><circle cx="20" cy="8" r="1.4"/>`
+};
+function frameIconHTML(name, opts=''){
+  return `<div class="frame-icon" style="left:22px; bottom:22px; width:30px; height:30px; ${opts}"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3">${ICONS[name]}</svg></div>`;
+}
+function frame(tone, icon, cap, small, imgUrl){
+  const imgTag = imgUrl ? `<img src="${imgUrl}" alt="${cap||''}">` : '';
+  const iconTag = imgUrl ? '' : frameIconHTML(icon);
+  return `<div class="frame tone-${tone}">${imgTag}${iconTag}${cap?`<div class="frame-cap">${small?`<small>${small}</small>`:''}${cap}</div>`:''}</div>`;
+}
+
+const TONES = ['a','b','c','d','e','f'];
+
+/* ============================================================
+   HERO — floating bokeh particles
+   ============================================================ */
+   (function(){
+  const heroVisual = document.querySelector('.hero-visual');
+  if (!heroVisual) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'hero-particles';
+  heroVisual.appendChild(wrap);
+
+  const COUNT = 50;
+  for (let i = 0; i < COUNT; i++){
+    const p = document.createElement('span');
+    p.className = 'hero-particle';
+    const size = Math.random() * 7 + 3;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 16 + 14;
+    const delay = -Math.random() * duration;
+    const drift = (Math.random() * 160 - 80).toFixed(0) + 'px';
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = left + '%';
+    p.style.animationDuration = duration + 's';
+    p.style.animationDelay = delay + 's';
+    p.style.setProperty('--drift', drift);
+    wrap.appendChild(p);
+  }
+})();
+
+/* ============================================================
+   HERO — typewriter effect (paragraph only, headline untouched)
+   ============================================================ */
+   (function(){
+  const el = document.querySelector('.hero-desc');
+  if (!el) return;
+  const fullText = el.textContent.trim();
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    return;
+  }
+
+  el.textContent = '';
+  el.classList.add('typing-cursor');
+
+  let i = 0;
+  const speed = 8;
+
+  function typeStep(){
+    if (i <= fullText.length){
+      el.textContent = fullText.slice(0, i);
+      i++;
+      setTimeout(typeStep, speed);
+    }
+    // no else here — cursor class is never removed, so it keeps blinking forever
+  }
+
+  setTimeout(typeStep, 900);
+})();
+/* ============================================================
+   BOKEH PARTICLES — reusable, for any dark/ink section
+   ============================================================ */
+   function addBokehParticles(target, {count=20, zIndex=-1, colorRGB='220,184,104'} = {}){
+  if (!target) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'bokeh-particles';
+  wrap.style.zIndex = zIndex;
+  target.appendChild(wrap);
+
+  for (let i = 0; i < count; i++){
+    const p = document.createElement('span');
+    p.className = 'hero-particle';
+    const size = Math.random() * 7 + 3;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 16 + 14;
+    const delay = -Math.random() * duration;
+    const drift = (Math.random() * 160 - 80).toFixed(0) + 'px';
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = left + '%';
+    p.style.animationDuration = duration + 's';
+    p.style.animationDelay = delay + 's';
+    p.style.setProperty('--drift', drift);
+    p.style.background = `radial-gradient(circle, rgba(${colorRGB},.9), rgba(${colorRGB},0) 70%)`;
+    wrap.appendChild(p);
+  }
+}
+
+addBokehParticles(document.querySelector('.services'),  {zIndex:-1, count:22});
+addBokehParticles(document.querySelector('.featured'),  {zIndex:-1, count:20});
+addBokehParticles(document.querySelector('.why'),       {zIndex:-1, count:18});
+addBokehParticles(document.querySelector('.cta-band'),  {zIndex:1,  count:16});
+
+// ... the rest of your existing code (EVENT_TYPES, GALLERY_ITEMS, PORTFOLIO, etc.) continues below unchanged
+
+const EVENT_TYPES = [
+  {icon:'seats',  cap:'Corporate Conference', desc:'Multi-track programming for business audiences.', img:'src="images/IMROS-0100.jpg'},
+  {icon:'mic',    cap:'International Summit', desc:'Cross-border delegations, simultaneous translation.', img:'src="images/MROS-00274.jpg'},
+  {icon:'glass',  cap:'Gala Dinner', desc:'Formal dinners with a run of show that never lags.', img:'src="images/IMROS-1163.jpg'},
+  {icon:'trophy', cap:'Awards Night', desc:'Recognition evenings built around a strong reveal.', img:'src="images/IMROS-1086.jpg'},
+  {icon:'booth',  cap:'Exhibition', desc:'Booth design and floor logistics for trade shows.', img:'src="images/IMROS-00453.jpg'},
+  {icon:'spark',  cap:'Product Launch', desc:'A single moment, engineered to land well.', img:'src="images/_SRT0624.JPG'},
+  {icon:'network',cap:'Networking Event', desc:'Rooms designed to get the right people talking.', img:'src="images/IMROS-09893.jpg'},
+  {icon:'pool',   cap:'Poolside Party', desc:'Open-air celebrations styled around water and light.', img:'src="images/IMROS-00497.jpg'},
+  {icon:'heart',  cap:'Private Party', desc:'Small guest lists, closely managed detail.', img:'src="images/pp.jpg'},
+  {icon:'balloon',cap:'Birthday Celebration/Wedding Anniversary', desc:'Personal parties with the same care as a summit.', img:'src="images/images.jpg'},
+];
+
+const GALLERY_ITEMS = [
+  {icon:'curtain', cap:'Stage Setup'},
+  {icon:'seats',   cap:'Audience'},
+  {icon:'glass',   cap:'Dinner Setup'},
+  {icon:'pool',    cap:'Poolside Setup'},
+  {icon:'candle',  cap:'Candlelit Tablescape'},
+  {icon:'lights',  cap:'Fairy-Light Installation'},
+  {icon:'booth',   cap:'Exhibition Booth'},
+  {icon:'mic',     cap:'Conference Room'},
+  {icon:'trophy',  cap:'Awards Ceremony'},
+  {icon:'camera',  cap:'Production Setup'}
+];
+
+const PORTFOLIO = [
+  {icon:'seats',  cap:'Nusantara Business Summit', cat:'conference', label:'Conference', loc:'Singapore · 2026', tone:'a', tall:true},
+  {icon:'pool',   cap:'The Meridian Poolside Gala', cat:'gala', label:'Gala', loc:'Sentosa · 2025', tone:'b'},
+  {icon:'booth',  cap:'Arka Product Expo', cat:'exhibition', label:'Exhibition', loc:'Marina Bay · 2025', tone:'c'},
+  {icon:'seats',  cap:'Prisma Leadership Forum', cat:'corporate', label:'Corporate', loc:'Raffles Place · 2025', tone:'d', tall:true},
+  {icon:'candle', cap:'A Candlelit 25th Anniversary', cat:'private', label:'Private', loc:'Sentosa Cove · 2025', tone:'e'},
+  {icon:'trophy', cap:'Kawan Corp Awards Night', cat:'gala', label:'Gala', loc:'Marina Bay · 2024', tone:'f'},
+  {icon:'mic',    cap:'Vela Capital Investor Day', cat:'corporate', label:'Corporate', loc:'Orchard · 2024', tone:'a'},
+  {icon:'lights', cap:'A Fairy-Lit Garden Birthday', cat:'private', label:'Private', loc:'Botanic Gardens · 2024', tone:'b', tall:true},
+  {icon:'balloon',cap:'A Private 40th Birthday', cat:'private', label:'Private', loc:'Bukit Timah · 2024', tone:'c'},
+  {icon:'network',cap:'Orbit Media Partner Mixer', cat:'corporate', label:'Corporate', loc:'Raffles Place · 2024', tone:'d'},
+  {icon:'seats',  cap:'Satria Holdings Town Hall', cat:'conference', label:'Conference', loc:'Marina Bay · 2023', tone:'e', tall:true},
+  {icon:'ring',   cap:'A Poolside Wedding Anniversary', cat:'private', label:'Private', loc:'Sentosa · 2023', tone:'f'}
+];
+
+/* ============================================================
+   NAV — scroll state + mobile menu
+   ============================================================ */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  backTop.classList.toggle('show', window.scrollY > 700);
+}, {passive:true});
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', ()=>{
+  burger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+  burger.classList.remove('open'); mobileMenu.classList.remove('open');
+}));
+
+/* Back to top */
+const backTop = document.getElementById('backTop');
+backTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .tl-item');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+  });
+}, {threshold:0.15});
+revealEls.forEach(el=>io.observe(el));
+
+/* ============================================================
+   BUILD: EVENTS SLIDER
+   ============================================================ */
+function buildCarousel(container, items, slideClass, big){
+  const track = container.querySelector('[data-track]');
+  track.innerHTML = items.map((it,i)=>`
+    <div class="${slideClass}">
+      ${frame(TONES[i % TONES.length], it.icon, it.cap, big?'':null, it.img)}
+      ${slideClass==='ev-slide' ? `<h4>${it.cap}</h4><p>${it.desc}</p>` : ''}
+    </div>
+  `).join('');
+}
+document.querySelectorAll('[data-carousel]').forEach((carousel, idx)=>{
+  /* ============================================================
+   AUTO-SCROLL — "Events we create" slider only
+   ============================================================ */
+   const eventsCarousel = document.querySelector('.events-slider-wrap [data-carousel]');
+if (eventsCarousel) {
+  const track = eventsCarousel.querySelector('[data-track]');
+  let autoRun = true;
+  let lastTime = null;
+  const SPEED = 60; // pixels per second — raise for faster, lower for slower
+  track.style.scrollSnapType = 'none';
+
+  function autoScrollStep(timestamp){
+    if (lastTime === null) lastTime = timestamp;
+    const delta = (timestamp - lastTime) / 1000; // seconds since last frame
+    lastTime = timestamp;
+
+    if (autoRun) {
+      track.scrollLeft += SPEED * delta;
+      if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 1) {
+        track.scrollLeft = 0;
+      }
+    }
+    requestAnimationFrame(autoScrollStep);
+  }
+  requestAnimationFrame(autoScrollStep);
+
+  eventsCarousel.addEventListener('mouseenter', ()=> autoRun = false);
+  eventsCarousel.addEventListener('mouseleave', ()=> autoRun = true);
+  eventsCarousel.addEventListener('touchstart', ()=> autoRun = false, {passive:true});
+  eventsCarousel.addEventListener('touchend', ()=> setTimeout(()=> autoRun = true, 2500));
+  
+  const eventsSection = document.querySelector('.events-slider-wrap');
+  const eventsResetIO = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if (entry.isIntersecting) {
+        track.scrollLeft = 0;
+      }
+    });
+  }, {threshold:0.3});
+  eventsResetIO.observe(eventsSection);
+}
+  const isGallery = carousel.closest('.gallery') !== null;
+  const items = isGallery ? GALLERY_ITEMS : EVENT_TYPES;
+  const slideClass = isGallery ? 'gal-slide' : 'ev-slide';
+  buildCarousel(carousel, items, slideClass, isGallery);
+
+  const track = carousel.querySelector('[data-track]');
+  const dotsWrap = carousel.querySelector('[data-dots]');
+  const slides = track.children;
+  dotsWrap.innerHTML = Array.from(slides).map((_,i)=>`<button data-dot="${i}" class="${i===0?'active':''}"></button>`).join('');
+  const dots = dotsWrap.querySelectorAll('button');
+
+  function updateDots(){
+    const scrollLeft = track.scrollLeft;
+    const slideW = slides[0].getBoundingClientRect().width + 22;
+    const active = Math.round(scrollLeft / slideW);
+    dots.forEach((d,i)=> d.classList.toggle('active', i===active));
+  }
+  track.addEventListener('scroll', ()=> requestAnimationFrame(updateDots), {passive:true});
+
+  dots.forEach(d=> d.addEventListener('click', ()=>{
+    const i = +d.dataset.dot;
+    const slideW = slides[0].getBoundingClientRect().width + 22;
+    track.scrollTo({left:i*slideW, behavior:'smooth'});
+  }));
+
+  carousel.querySelector('[data-prev]').addEventListener('click', ()=>{
+    track.scrollBy({left:-(slides[0].getBoundingClientRect().width+22), behavior:'smooth'});
+  });
+  carousel.querySelector('[data-next]').addEventListener('click', ()=>{
+    track.scrollBy({left:(slides[0].getBoundingClientRect().width+22), behavior:'smooth'});
+  });
+
+  /* drag to scroll */
+  let isDown=false, startX, scrollStart;
+  track.addEventListener('mousedown', e=>{ isDown=true; startX=e.pageX; scrollStart=track.scrollLeft; track.style.scrollSnapType='none'; });
+  window.addEventListener('mouseup', ()=>{ isDown=false; track.style.scrollSnapType='x mandatory'; });
+  window.addEventListener('mousemove', e=>{
+    if(!isDown) return;
+    track.scrollLeft = scrollStart - (e.pageX - startX);
+  });
+});
+
+/* ============================================================
+   PORTFOLIO — masonry + filter
+   ============================================================ */
+const masonry = document.querySelector('[data-masonry]');
+masonry.innerHTML = PORTFOLIO.map((p,i)=>`
+  <div class="pf-item" data-cat="${p.cat}">
+    <div class="frame tone-${p.tone}" style="aspect-ratio:${p.tall?'3/4':'4/3'};">
+      ${p.img ? `<img src="${p.img}" alt="${p.cap}">` : frameIconHTML(p.icon)}
+      <div class="pf-overlay">
+        <div class="pf-cat">${p.label}</div>
+        <h4>${p.cap}</h4>
+        <div class="pf-loc">${p.loc}</div>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+document.querySelectorAll('[data-filter]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.pf-item').forEach(item=>{
+      const match = filter==='all' || item.dataset.cat===filter;
+      item.style.transition = 'opacity .35s ease, transform .35s ease';
+      if(match){ item.classList.remove('hide'); requestAnimationFrame(()=>{ item.style.opacity='1'; item.style.transform='scale(1)'; }); }
+      else{ item.style.opacity='0'; item.style.transform='scale(.96)'; setTimeout(()=> item.classList.add('hide'), 340); }
+    });
+  });
+});
+
+/* ============================================================
+   FEATURED PROJECT — LIGHTBOX
+   ============================================================ */
+const galleryFrames = document.querySelectorAll('[data-lightbox-item]');
+const lightbox = document.getElementById('lightbox');
+const lightboxFrame = document.getElementById('lightboxFrame');
+let lbIndex = 0;
+
+function openLightbox(i){
+  lbIndex = i;
+  const src = galleryFrames[i];
+  const tone = Array.from(src.classList).find(c=>c.startsWith('tone-'));
+  lightboxFrame.className = 'frame ' + tone;
+  const img = src.querySelector('img');
+  lightboxFrame.innerHTML = img ? `<img src="${img.src}" alt="${img.alt||''}">` : '';
+  lightbox.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+/*
+function openLightbox(i){
+  lbIndex = i;
+  const src = galleryFrames[i];
+  lightboxFrame.className = 'frame ' + Array.from(src.classList).find(c=>c.startsWith('tone-'));
+  lightbox.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+*/
+function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; }
+galleryFrames.forEach((el,i)=> el.addEventListener('click', ()=> openLightbox(i)));
+document.querySelector('[data-lb-close]').addEventListener('click', closeLightbox);
+document.querySelector('[data-lb-prev]').addEventListener('click', ()=> openLightbox((lbIndex-1+galleryFrames.length)%galleryFrames.length));
+document.querySelector('[data-lb-next]').addEventListener('click', ()=> openLightbox((lbIndex+1)%galleryFrames.length));
+lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLightbox(); });
+document.addEventListener('keydown', e=>{
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowLeft') openLightbox((lbIndex-1+galleryFrames.length)%galleryFrames.length);
+  if(e.key==='ArrowRight') openLightbox((lbIndex+1)%galleryFrames.length);
+});
+
+/* ============================================================
+   ANIMATED COUNTER
+   ============================================================ */
+   document.querySelectorAll('[data-counter]').forEach(el=>{
+  const target = +el.dataset.counter;
+  const suffix = el.dataset.suffix || '';
+  const counterIO = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        let cur = 0;
+        const step = Math.max(1, Math.round(target/60));
+        const t = setInterval(()=>{
+          cur += step;
+          if(cur >= target){ cur = target; clearInterval(t); }
+          el.textContent = cur.toLocaleString() + (cur === target ? suffix : '');
+        }, 20);
+        counterIO.unobserve(el);
+      }
+    });
+  }, {threshold:0.5});
+  counterIO.observe(el);
+});
+
+/* ============================================================
+   CLIENTS LOGO MARQUEE — duplicate track for seamless loop
+   ============================================================ */
+const logoTrack = document.getElementById('logoTrack');
+logoTrack.innerHTML += logoTrack.innerHTML;
+
+/* ============================================================
+   CONTACT FORM (mock submit)
+   ============================================================ */
+const form = document.getElementById('contactForm');
+const formNote = document.getElementById('formNote');
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  formNote.classList.add('show');
+  form.reset();
+  setTimeout(()=> formNote.classList.remove('show'), 5000);
+});
+</script>
+</body>
+</html>
