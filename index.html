@@ -356,7 +356,6 @@ section{ position:relative; }
 /* ============================================================
    PORTFOLIO
    ============================================================ */
-.portfolio{ background:var(--paper); padding:140px 0; }
 .filters{ display:flex; gap:10px; margin-bottom:44px; flex-wrap:wrap; }
 .filter-btn{
   padding:10px 20px; border-radius:999px; border:1px solid rgba(0,0,0,.15); background:transparent; font-size:13.5px; font-weight:600;
@@ -553,7 +552,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   .hero-content{ padding-bottom:56px; }
   .hero-sub-row{ flex-direction:column; align-items:flex-start; }
   .about{ padding:110px 0 90px; }
-  .services, .featured, .why, .process, .gallery, .portfolio, .contact, .cta-band, .events-slider-wrap{ padding-top:90px; padding-bottom:90px; }
+  .services, .featured, .why, .process, .gallery, .contact, .cta-band, .events-slider-wrap{ padding-top:90px; padding-bottom:90px; }
   .feat-meta{ gap:22px; }
   .tl-body{ flex-direction:column; }
 }
@@ -622,7 +621,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   <a href="#about">About</a>
   <a href="#services">Services</a>
   <a href="#events">Events</a>
-  <a href="#whyus">Why Us</a>
+  <a href="#why">Why Us</a>
   <a href="#contact">Contact</a>
 </div>
 
@@ -652,7 +651,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
     <div class="hero-sub-row">
       <p class="hero-desc">SGP Events Group designs and produces memorable events end to end - from boardroom summits and brand launches to poolside galas, candlelit anniversary dinners, and the birthday table for twelve. You bring the vision; we build the experience around it.</p>
       <div class="hero-ctas">
-        <a href="#portfolio" class="btn btn-outline">Explore Our Events</a>
+        <a href="#events" class="btn btn-outline">Explore Our Events</a>
         <a href="#contact" class="btn btn-primary">Let's Work Together</a>
       </div>
     </div>
@@ -859,34 +858,10 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
     <button class="lightbox-next" data-lb-next><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
 </div>
-
-<!-- ============================================================
-     PORTFOLIO
-     ============================================================ -->
-<section class="portfolio" id="portfolio">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>Our event portfolio</h2>
-      <p class="lede">A selection of programs across corporate, conference, exhibition, gala, and private work.</p>
-    </div>
-    <div class="filters reveal" data-filters>
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="corporate">Corporate</button>
-      <button class="filter-btn" data-filter="conference">Conference</button>
-      <button class="filter-btn" data-filter="exhibition">Exhibition</button>
-      <button class="filter-btn" data-filter="gala">Gala</button>
-      <button class="filter-btn" data-filter="private">Private</button>
-    </div>
-    <div class="masonry" data-masonry>
-      <!-- injected by JS -->
-    </div>
-  </div>
-</section>
-
 <!-- ============================================================
      WHY CHOOSE SGP
      ============================================================ -->
-<section class="why">
+<section class="why" id="why">
   <div class="container">
     <div class="section-head reveal">
       <h2 style="color:var(--text-on-ink);">Why clients choose SGP</h2>
@@ -961,7 +936,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
     <p>Whether you're planning a corporate summit, gala dinner, brand event, or private celebration, SGP is ready to bring your vision to life.</p>
     <div class="cta-btns">
       <a href="#contact" class="btn btn-primary">Start a Conversation</a>
-      <a href="#portfolio" class="btn btn-outline">View Our Portfolio</a>
+      <a href="#why" class="btn btn-outline">See Why Clients Choose Us</a>
     </div>
   </div>
 </section>
@@ -1031,7 +1006,6 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#events">Events</a>
-        <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer-col">
