@@ -599,7 +599,9 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:var(--radius-md); overflow:hidden;
   transition:transform .4s var(--ease), box-shadow .4s var(--ease);
 }
-.next-card:hover{ transform:translateY(-6px); box-shadow:0 24px 48px rgba(0,0,0,.12); }
+.next-card:hover{ transform:translateY(-8px) scale(1.015); box-shadow:0 30px 60px rgba(0,0,0,.16); }
+.next-card .frame img{ transition:transform .6s var(--ease); }
+.next-card:hover .frame img{ transform:scale(1.08); }
 .next-card-body{ padding:28px 30px 32px; }
 .next-card-body h3{ font-size:22px; margin:6px 0 10px; }
 .next-meta{ font-size:12.5px; font-weight:700; color:var(--brass-dim); letter-spacing:.02em; margin-bottom:14px; }
@@ -818,6 +820,11 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
     <div class="next-meta">Jakarta, Indonesia · April · 2-Day Forum</div>
     <p>A strategic forum that brings together government representatives, vocational education institutions, industry leaders, professional associations, technology partners, and international partners to address future competency needs and foster meaningful, actionable collaboration.</p>
     <a href="#contact" class="btn btn-outline dark">See Details</a>
+    <a href="#" class="btn btn-outline dark" data-add-ics
+   data-title="Indonesia Vocational Summit (Invos) 2027"
+   data-start="2026-11-12T09:00:00"
+   data-end="2026-11-13T17:00:00"
+   data-location="Jakarta, Indonesia">Add to Calendar</a>
   </div>
 </div>
 
@@ -832,6 +839,11 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
      <div class="next-meta">The Grand Platinum Hotel, DKI JAKARTA · November 2026 · Gala Dinner</div>
      <p>The Indonesia Aero-Maintenance Executive Networking Dinner 2026 is where leading professionals in our industry come together to network, showcase their latest capabilities and competencies, and offer appreciation to their colleagues who have advanced the Indonesian aerospace maintenance industry.</p>
      <a href="#contact" class="btn btn-outline dark">See Details</a>
+     <a href="#" class="btn btn-outline dark" data-add-ics
+   data-title="Indonesia Aero-Maintenance Executive Networking Dinner 2026 (Inamec)"
+   data-start="2026-12-20T18:00:00"
+   data-end="2026-12-20T22:00:00"
+   data-location="The Grand Platinum Hotel, DKI Jakarta">Add to Calendar</a> 
   </div>
 </div>
       </div>
@@ -1091,7 +1103,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#events">Events</a>
+        <a href="#next-project">Events</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer-col">
@@ -1475,11 +1487,34 @@ document.querySelectorAll('[data-countdown-badge]').forEach(badge=>{
   function update(){
     const diff = target - Date.now();
     if (diff <= 0){ badge.textContent = 'Happening now'; return; }
-    const days = Math.ceil(diff / 86400000);
-    badge.textContent = days + (days === 1 ? ' day to go' : ' days to go');
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    badge.textContent = `${d}d ${h}h ${m}m to go`;
   }
   update();
-  setInterval(update, 3600000); // refresh hourly — days-only counter doesn't need per-second updates
+  setInterval(update, 60000);
+});
+
+document.querySelectorAll('[data-add-ics]').forEach(btn=>{
+  btn.addEventListener('click', e=>{
+    e.preventDefault();
+    const fmt = s => new Date(s).toISOString().replace(/[-:]|\.\d{3}/g,'');
+    const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${btn.dataset.title}
+DTSTART:${fmt(btn.dataset.start)}
+DTEND:${fmt(btn.dataset.end)}
+LOCATION:${btn.dataset.location}
+END:VEVENT
+END:VCALENDAR`;
+    const blob = new Blob([ics], {type:'text/calendar'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${btn.dataset.title}.ics`;
+    link.click();
+  });
 });
 
 /* ============================================================
