@@ -329,9 +329,9 @@ section{ position:relative; }
 .feat-bottom{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
 .feat-bottom p{ color:var(--text-on-ink-muted); font-size:16px; max-width:52ch; }
 .feat-highlights{ display:flex; flex-direction:column; gap:16px; }
-/* .feat-highlights li{ list-style:none; display:flex; gap:14px; align-items:flex-start; font-size:14.5px; color:var(--text-on-ink-muted); }
-.feat-highlights li svg{ flex-shrink:0; width:18px; height:18px; stroke:var(--brass-light); margin-top:2px; } */
-.feat-highlights li{
+.feat-highlights li{ list-style:none; display:flex; gap:14px; align-items:flex-start; font-size:14.5px; color:var(--text-on-ink-muted); }
+.feat-highlights li svg{ flex-shrink:0; width:18px; height:18px; stroke:var(--brass-light); margin-top:2px; }
+/* .feat-highlights li{
   list-style:none; display:flex; gap:14px; align-items:flex-start; font-size:14.5px; color:var(--text-on-ink-muted);
   padding:10px 12px; margin-left:-12px; border-radius:8px; cursor:default;
   transition: background .3s var(--ease), transform .3s var(--ease);
@@ -341,7 +341,7 @@ section{ position:relative; }
   transform: translateX(6px);
 }
 .feat-highlights li svg{ transition: stroke .3s, transform .3s; flex-shrink:0; }
-.feat-highlights li:hover svg{ stroke:var(--brass); transform: scale(1.15); }
+.feat-highlights li:hover svg{ stroke:var(--brass); transform: scale(1.15); } */
 .feat-bottom ul{ margin:0; padding:0; }
 
 /* Lightbox */
@@ -951,8 +951,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
       </div>
       <div>
         <h3 style="font-size:24px; margin-bottom:16px;">SGP's role &amp; highlights</h3>
-         <!-- <ul class="feat-highlights"> -->
-        <ul class="feat-highlights reveal-stagger">
+         <ul class="feat-highlights">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>Manage full event production, from concept development and planning through to on-site execution and event breakdown</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>Manage participants, speakers, and sponsors, including coordination, communication, and on-site requirements </li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>Manage exhibitions, gala dinners, and other event-related activities to ensure smooth planning and execution</li>
