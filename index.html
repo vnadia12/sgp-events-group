@@ -234,7 +234,7 @@ section{ position:relative; }
 /* ============================================================
    SERVICES (bento-style asymmetric grid)
    ============================================================ */
-.services{ background:var(--ink); color:var(--text-on-ink); padding:90px 0; isolation:isolate;}
+.services{ background:var(--ink); color:var(--text-on-ink); padding:80px 0; isolation:isolate;}
 .svc-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:18px; }
 .svc-card{
   grid-column:span 3; background:var(--ink-soft); border:1px solid var(--ink-line); border-radius:var(--radius-md);
@@ -313,7 +313,7 @@ section{ position:relative; }
 /* ============================================================
    FEATURED PROJECT
    ============================================================ */
-.featured{ background:var(--ink); color:var(--text-on-ink); padding:90px 0; isolation:isolate; }
+.featured{ background:var(--ink); color:var(--text-on-ink); padding:90px 0 60px; isolation:isolate; }
 .feat-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; margin-bottom:48px; }
 .feat-title{ font-size:clamp(32px,5vw,58px); max-width:16ch; }
 .feat-meta{ display:flex; gap:36px; flex-wrap:wrap; }
@@ -385,7 +385,7 @@ section{ position:relative; }
 /* ============================================================
    WHY CHOOSE
    ============================================================ */
-.why{ background:var(--paper); color:var(--text-dark); padding:140px 0 60px; isolation:isolate; }
+.why{ background:var(--paper); color:var(--text-dark); padding:80px 0 60px; isolation:isolate; }
 .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(0,0,0,.1); border:1px solid rgba(0,0,0,.1); }
 .why-item{
   background:var(--paper); padding:44px 36px; position:relative;
@@ -457,7 +457,7 @@ section{ position:relative; }
 /* ============================================================
    CONTACT
    ============================================================ */
-.contact{ background:var(--paper); padding:90px 0; }
+.contact{ background:var(--paper); padding:90px 0 20px; }
 .contact-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:80px; }
 .contact-info h2{ font-size:clamp(30px,4vw,46px); margin-bottom:20px; max-width:12ch; }
 .contact-info p{ color:var(--text-muted); font-size:15.5px; max-width:40ch; margin-bottom:40px; }
@@ -593,6 +593,50 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
 @keyframes blinkCursor{
   50%{ opacity:0; }
 }
+.next-project{ background:var(--paper); padding:80px 0 40px; isolation:isolate; }
+.next-grid{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+.next-card{
+  background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:var(--radius-md); overflow:hidden;
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.next-card:hover{ transform:translateY(-6px); box-shadow:0 24px 48px rgba(0,0,0,.12); }
+.next-card-body{ padding:28px 30px 32px; }
+.next-card-body h3{ font-size:22px; margin:6px 0 10px; }
+.next-meta{ font-size:12.5px; font-weight:700; color:var(--brass-dim); letter-spacing:.02em; margin-bottom:14px; }
+.next-card-body p{ color:var(--text-muted); font-size:14.5px; margin-bottom:22px; }
+.next-badge{
+  position:absolute; top:16px; right:16px; z-index:3;
+  background:rgba(21,20,26,.75); color:#F2EFE6; backdrop-filter:blur(6px);
+  padding:7px 14px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.02em;
+}
+@media(max-width:820px){ .next-grid{ grid-template-columns:1fr; } }
+
+.event-showcase{ background:var(--paper); color:var(--text-dark); padding:100px 0 70px; overflow:hidden; isolation:isolate; }
+.eg-carousel{ position:relative; }
+.eg-track{ display:flex; gap:20px; overflow-x:auto; padding:0 clamp(20px,5vw,64px) 8px; scrollbar-width:none; }
+.eg-track::-webkit-scrollbar{ display:none; }
+.eg-slide{ flex:0 0 auto; width:min(300px,72vw); cursor:zoom-in; }
+.eg-slide .frame{ aspect-ratio:4/5; }
+.eg-slide .frame img{ transition:transform .6s var(--ease); }
+.eg-slide:hover .frame img{ transform:scale(1.06); }
+.eg-slide .frame-cap{ font-size:15px; }
+
+.eg-lightbox{
+  position:fixed; inset:0; background:rgba(10,9,7,.95); z-index:300; display:none;
+  align-items:center; justify-content:center; padding:40px;
+}
+.eg-lightbox.open{ display:flex; }
+.eg-lightbox-inner{ position:relative; width:min(880px,86vw); }
+.eg-lightbox-main{
+  width:100%; aspect-ratio:16/10; border-radius:var(--radius-md); overflow:hidden;
+  transform:scale(.96); opacity:0; transition:transform .35s var(--ease), opacity .35s var(--ease);
+}
+.eg-lightbox.open .eg-lightbox-main{ transform:scale(1); opacity:1; }
+.eg-lightbox-main img{ width:100%; height:100%; object-fit:cover; }
+.eg-lightbox-thumbs{ display:flex; gap:10px; margin-top:22px; overflow-x:auto; padding-bottom:4px; }
+.eg-thumb{ width:64px; height:64px; border-radius:6px; overflow:hidden; flex:0 0 auto; cursor:pointer; opacity:.5; border:2px solid transparent; transition:opacity .3s, border-color .3s; }
+.eg-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.eg-thumb.active{ opacity:1; border-color:var(--brass); }
 </style>
 </head>
 <body>
@@ -606,7 +650,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#events">Events</a>
+      <a href="#next-project">Events</a>
       <a href="#why">Why Us</a>
       <a href="#contact">Contact</a>
     </div>
@@ -620,7 +664,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about">About</a>
   <a href="#services">Services</a>
-  <a href="#events">Events</a>
+  <a href="#next-project">Events</a>
   <a href="#why">Why Us</a>
   <a href="#contact">Contact</a>
 </div>
@@ -651,7 +695,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
     <div class="hero-sub-row">
       <p class="hero-desc">SGP Events Group designs and produces memorable events end to end - from boardroom summits and brand launches to poolside galas, candlelit anniversary dinners, and the birthday table for twelve. You bring the vision; we build the experience around it.</p>
       <div class="hero-ctas">
-        <a href="#events" class="btn btn-outline">Explore Our Events</a>
+        <a href="#event-showcase" class="btn btn-outline">Explore Our Events</a>
         <a href="#contact" class="btn btn-primary">Let's Work Together</a>
       </div>
     </div>
@@ -667,7 +711,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
     <div class="about-copy reveal">
       <div class="eyebrow">About SGP</div>
       <h2>An event organizer built around one idea — get every detail right.</h2>
-      <p>SGP Events Group is a Singapore-based event organizer and management company. We help clients plan, build, and run events from the first concept sketch to the last guest leaving the room — covering everything a serious event needs and nothing it doesn't.</p>
+      <p>SGP Events Group is a Indonesian-based event organizer and management company. We help clients plan, build, and run events from the first concept sketch to the last guest leaving the room — covering everything a serious event needs and nothing it doesn't.</p>
       <p>We work across two worlds at once: structured corporate programs that need precision, and personal celebrations — gala dinners, wedding anniversaries, milestone birthdays — that need warmth and a distinct visual signature. Both get the same standard of planning, delivered in our signature black, white, and gold.</p>
       <div class="about-services">
         <div>Event planning</div>
@@ -699,7 +743,6 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   <div class="container">
     <div class="section-head reveal">
       <h2>What we do</h2>
-      <p class="lede">Six ways we can shape your event, from a single evening to a multi-day program.</p>
     </div>
     <div class="svc-grid reveal-stagger">
       <div class="svc-card">
@@ -755,30 +798,46 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
 </section>
 
 <!-- ============================================================
-     EVENTS WE CREATE — SLIDER
+     NEXT PROJECTS (UPCOMING) — white background, 2 side-by-side
      ============================================================ -->
-     <section class="events-slider-wrap" id="events">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Events we create</h2>
-          <p class="lede">Ten formats, one standard of execution. Drag, swipe, or use the arrows.</p>
-        </div>
+<section class="next-project" id="next-project">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>What's coming up</h2>
+    </div>
+
+    <div class="next-grid">
+      <div class="next-card reveal">
+      <div class="frame tone-e" style="aspect-ratio:4/3;">
+    <img src="images/IMROS-6358.jpg" alt="Indonesia Vocational Summit (Invos) 2027">
+    <div class="next-badge" data-countdown-badge data-target="2026-11-12T09:00:00">Loading…</div>
+  </div>
+  <div class="next-card-body">
+    <div class="eyebrow">Coming Up</div>
+    <h3>Indonesia Vocational Summit (Invos) 2027</h3>
+    <div class="next-meta">Jakarta, Indonesia · April · 2-Day Forum</div>
+    <p>A strategic forum that brings together government representatives, vocational education institutions, industry leaders, professional associations, technology partners, and international partners to address future competency needs and foster meaningful, actionable collaboration.</p>
+    <a href="#contact" class="btn btn-outline dark">See Details</a>
+  </div>
+</div>
+
+    <div class="next-card reveal">
+      <div class="frame tone-b" style="aspect-ratio:4/3;">
+      <img src="images/IMROS-1120.jpg" alt="Indonesia Aero-Maintenance Executive Networking Dinner 2026 (Inamec)">
+      <div class="next-badge" data-countdown-badge data-target="2026-12-20T18:00:00">Loading…</div>
       </div>
-      <div class="carousel" data-carousel>
-        <div class="carousel-track" data-track>
-          <!-- slides injected by JS from EVENT_TYPES -->
-        </div>
-        <div class="container">
-          <div class="carousel-controls">
-            <div class="carousel-dots" data-dots></div>
-            <div class="carousel-arrows">
-              <button class="arrow-btn" data-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg></button>
-              <button class="arrow-btn" data-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
-            </div>
-          </div>
-        </div>
+    <div class="next-card-body">
+     <div class="eyebrow">Coming Up</div>
+     <h3>Indonesia Aero-Maintenance Excecutive Networking Dinner 2026 (Inamec)"</h3>
+     <div class="next-meta">The Grand Platinum Hotel, DKI JAKARTA · November 2026 · Gala Dinner</div>
+     <p>The Indonesia Aero-Maintenance Executive Networking Dinner 2026 is where leading professionals in our industry come together to network, showcase their latest capabilities and competencies, and offer appreciation to their colleagues who have advanced the Indonesian aerospace maintenance industry.</p>
+     <a href="#contact" class="btn btn-outline dark">See Details</a>
+  </div>
+</div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
 <!-- ============================================================
      FEATURED PROJECT
@@ -787,7 +846,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   <div class="container">
     <div class="feat-top reveal">
       <div>
-        <div class="eyebrow on-ink">Our Recent Project</div>
+        <div class="eyebrow on-ink">Our Past Project</div>
         <h2 class="feat-title">Indonesia MRO Summit 2026</h2>
       </div>
       <div class="feat-meta">
@@ -991,6 +1050,33 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
 </section>
 
 <!-- ============================================================
+     EVENT SHOWCASE GALLERY — before footer
+     ============================================================ -->
+<section class="event-showcase" id="event-showcase">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Moments from our events</h2>
+    </div>
+  </div>
+  <div class="eg-carousel" data-eg-carousel>
+    <div class="eg-track" data-eg-track>
+      <!-- slides injected by JS from SHOWCASE_IMAGES -->
+    </div>
+  </div>
+</section>
+
+<!-- Event Showcase Lightbox -->
+<div class="eg-lightbox" id="egLightbox">
+  <div class="eg-lightbox-inner">
+    <button class="lightbox-close" data-eg-close><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lightbox-prev" data-eg-prev><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="eg-lightbox-main"><img id="egLightboxImg" src="" alt=""></div>
+    <button class="lightbox-next" data-eg-next><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="eg-lightbox-thumbs" id="egLightboxThumbs"></div>
+  </div>
+</div>
+
+<!-- ============================================================
      FOOTER
      ============================================================ -->
 <footer>
@@ -1154,29 +1240,17 @@ addBokehParticles(document.querySelector('.cta-band'),  {zIndex:1,  count:16});
 
 // ... the rest of your existing code (EVENT_TYPES, GALLERY_ITEMS, PORTFOLIO, etc.) continues below unchanged
 
-const EVENT_TYPES = [
-  {icon:'seats',  cap:'Corporate Conference', desc:'Multi-track programming for business audiences.', img:'images/IMROS-0100.jpg'},
-  {icon:'mic',    cap:'International Summit', desc:'Cross-border delegations, simultaneous translation.', img:'images/IMROS-00274.jpg'},
-  {icon:'glass',  cap:'Gala Dinner', desc:'Formal dinners with a run of show that never lags.', img:'images/IMROS-1163.jpg'},
-  {icon:'trophy', cap:'Awards Night', desc:'Recognition evenings built around a strong reveal.', img:'images/IMROS-1086.jpg'},
-  {icon:'booth',  cap:'Exhibition', desc:'Booth design and floor logistics for trade shows.', img:'images/IMROS-00453.jpg'},
-  {icon:'spark',  cap:'Product Launch', desc:'A single moment, engineered to land well.', img:'images/SRT0723.jpg'},
-  {icon:'network',cap:'Networking Event', desc:'Rooms designed to get the right people talking.', img:'images/IMROS-0425.jpg'},
-  {icon:'heart',  cap:'Private Party', desc:'Small guest lists, closely managed detail.', img:'images/privatprty.jpg'},
-];
-
-
 const GALLERY_ITEMS = [
-  {icon:'curtain', cap:'Stage Setup'},
-  {icon:'seats',   cap:'Audience'},
-  {icon:'glass',   cap:'Dinner Setup'},
-  {icon:'pool',    cap:'Poolside Setup'},
-  {icon:'candle',  cap:'Candlelit Tablescape'},
-  {icon:'lights',  cap:'Fairy-Light Installation'},
-  {icon:'booth',   cap:'Exhibition Booth'},
-  {icon:'mic',     cap:'Conference Room'},
-  {icon:'trophy',  cap:'Awards Ceremony'},
-  {icon:'camera',  cap:'Production Setup'}
+  {icon:'curtain'},
+  {icon:'seats'},
+  {icon:'glass'},
+  {icon:'pool'},
+  {icon:'candle'},
+  {icon:'lights'},
+  {icon:'booth'},
+  {icon:'mic'},
+  {icon:'trophy'},
+  {icon:'camera'}
 ];
 
 /* ============================================================
@@ -1393,6 +1467,129 @@ form.addEventListener('submit', e=>{
   form.reset();
   setTimeout(()=> formNote.classList.remove('show'), 5000);
 });
+/* ============================================================
+   NEXT PROJECTS — lightweight "X days to go" badge (no ticking clock)
+   ============================================================ */
+document.querySelectorAll('[data-countdown-badge]').forEach(badge=>{
+  const target = new Date(badge.dataset.target).getTime();
+  function update(){
+    const diff = target - Date.now();
+    if (diff <= 0){ badge.textContent = 'Happening now'; return; }
+    const days = Math.ceil(diff / 86400000);
+    badge.textContent = days + (days === 1 ? ' day to go' : ' days to go');
+  }
+  update();
+  setInterval(update, 3600000); // refresh hourly — days-only counter doesn't need per-second updates
+});
+
+/* ============================================================
+   EVENT SHOWCASE — data, build, autoscroll, lightbox with thumbnails
+   ============================================================ */
+const SHOWCASE_IMAGES = [
+  {img:'images/IMROS-0100.jpg'},
+  {img:'images/IMROS-1163.jpg'},
+  {img:'images/IMROS-00497.jpg'},
+  {img:'images/IMROS-00274.jpg'},
+  {img:'images/IMROS-00453.jpg'},
+  {img:'images/IMROS-1086.jpg'},
+  {img:'images/_SRT0723.jpg'}
+];
+
+const egTrack = document.querySelector('[data-eg-track]');
+if (egTrack){
+  egTrack.innerHTML = SHOWCASE_IMAGES.map((it,i)=>`
+  <div class="eg-slide" data-eg-item data-index="${i}">
+    <div class="frame tone-${TONES[i % TONES.length]}">
+      <img src="${it.img}">
+    </div>
+  </div>
+`).join('');
+}
+
+/* autoscroll — loops, pauses on hover/touch, resets when scrolled into view */
+(function(){
+  const wrap = document.querySelector('.event-showcase [data-eg-carousel]');
+  if (!wrap) return;
+  const track = wrap.querySelector('[data-eg-track]');
+  let autoRun = true;
+  let lastTime = null;
+  const SPEED = 50;
+
+  function step(timestamp){
+    if (lastTime === null) lastTime = timestamp;
+    const delta = (timestamp - lastTime) / 1000;
+    lastTime = timestamp;
+    if (autoRun){
+      track.scrollLeft += SPEED * delta;
+      if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 1){
+        track.scrollLeft = 0;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+
+  wrap.addEventListener('mouseenter', ()=> autoRun = false);
+  wrap.addEventListener('mouseleave', ()=> autoRun = true);
+  wrap.addEventListener('touchstart', ()=> autoRun = false, {passive:true});
+  wrap.addEventListener('touchend', ()=> setTimeout(()=> autoRun = true, 2500));
+
+  const showcaseSection = document.querySelector('.event-showcase');
+  const egIO = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if (e.isIntersecting) track.scrollLeft = 0; });
+  }, {threshold:0.25});
+  if (showcaseSection) egIO.observe(showcaseSection);
+
+  let isDown=false, startX, scrollStart;
+  track.addEventListener('mousedown', e=>{ isDown=true; startX=e.pageX; scrollStart=track.scrollLeft; });
+  window.addEventListener('mouseup', ()=> isDown=false);
+  window.addEventListener('mousemove', e=>{
+    if(!isDown) return;
+    track.scrollLeft = scrollStart - (e.pageX - startX);
+  });
+})();
+
+/* lightbox with clickable thumbnail strip */
+(function(){
+  const lightbox = document.getElementById('egLightbox');
+  const imgEl = document.getElementById('egLightboxImg');
+  const thumbsWrap = document.getElementById('egLightboxThumbs');
+  if (!lightbox || !imgEl || !thumbsWrap) return;
+
+  thumbsWrap.innerHTML = SHOWCASE_IMAGES.map((it,i)=>`
+    <div class="eg-thumb" data-eg-thumb="${i}"><img src="${it.img}" alt="${it.cap}"></div>
+  `).join('');
+  const thumbs = thumbsWrap.querySelectorAll('[data-eg-thumb]');
+
+  let current = 0;
+  function open(i){
+    current = i;
+    imgEl.src = SHOWCASE_IMAGES[i].img;
+    imgEl.alt = SHOWCASE_IMAGES[i].cap;
+    thumbs.forEach((t,ti)=> t.classList.toggle('active', ti===i));
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-eg-item]').forEach(el=>{
+    el.addEventListener('click', ()=> open(+el.dataset.index));
+  });
+  thumbs.forEach(t=> t.addEventListener('click', ()=> open(+t.dataset.egThumb)));
+  document.querySelector('[data-eg-close]').addEventListener('click', close);
+  document.querySelector('[data-eg-prev]').addEventListener('click', ()=> open((current-1+SHOWCASE_IMAGES.length)%SHOWCASE_IMAGES.length));
+  document.querySelector('[data-eg-next]').addEventListener('click', ()=> open((current+1)%SHOWCASE_IMAGES.length));
+  lightbox.addEventListener('click', e=>{ if (e.target===lightbox) close(); });
+  document.addEventListener('keydown', e=>{
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key==='Escape') close();
+    if (e.key==='ArrowLeft') open((current-1+SHOWCASE_IMAGES.length)%SHOWCASE_IMAGES.length);
+    if (e.key==='ArrowRight') open((current+1)%SHOWCASE_IMAGES.length);
+  });
+})();
 </script>
 </body>
 </html>
