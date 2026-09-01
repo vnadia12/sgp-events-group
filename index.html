@@ -608,7 +608,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#events">Events</a>
-      <a href="#whyus">Why Us</a>
+      <a href="#why">Why Us</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-cta">
@@ -1205,21 +1205,6 @@ const GALLERY_ITEMS = [
   {icon:'camera',  cap:'Production Setup'}
 ];
 
-const PORTFOLIO = [
-  {icon:'seats',  cap:'Nusantara Business Summit', cat:'conference', label:'Conference', loc:'Singapore · 2026', tone:'a', tall:true},
-  {icon:'pool',   cap:'The Meridian Poolside Gala', cat:'gala', label:'Gala', loc:'Sentosa · 2025', tone:'b'},
-  {icon:'booth',  cap:'Arka Product Expo', cat:'exhibition', label:'Exhibition', loc:'Marina Bay · 2025', tone:'c'},
-  {icon:'seats',  cap:'Prisma Leadership Forum', cat:'corporate', label:'Corporate', loc:'Raffles Place · 2025', tone:'d', tall:true},
-  {icon:'candle', cap:'A Candlelit 25th Anniversary', cat:'private', label:'Private', loc:'Sentosa Cove · 2025', tone:'e'},
-  {icon:'trophy', cap:'Kawan Corp Awards Night', cat:'gala', label:'Gala', loc:'Marina Bay · 2024', tone:'f'},
-  {icon:'mic',    cap:'Vela Capital Investor Day', cat:'corporate', label:'Corporate', loc:'Orchard · 2024', tone:'a'},
-  {icon:'lights', cap:'A Fairy-Lit Garden Birthday', cat:'private', label:'Private', loc:'Botanic Gardens · 2024', tone:'b', tall:true},
-  {icon:'balloon',cap:'A Private 40th Birthday', cat:'private', label:'Private', loc:'Bukit Timah · 2024', tone:'c'},
-  {icon:'network',cap:'Orbit Media Partner Mixer', cat:'corporate', label:'Corporate', loc:'Raffles Place · 2024', tone:'d'},
-  {icon:'seats',  cap:'Satria Holdings Town Hall', cat:'conference', label:'Conference', loc:'Marina Bay · 2023', tone:'e', tall:true},
-  {icon:'ring',   cap:'A Poolside Wedding Anniversary', cat:'private', label:'Private', loc:'Sentosa · 2023', tone:'f'}
-];
-
 /* ============================================================
    NAV — scroll state + mobile menu
    ============================================================ */
@@ -1353,33 +1338,6 @@ if (eventsCarousel) {
 /* ============================================================
    PORTFOLIO — masonry + filter
    ============================================================ */
-const masonry = document.querySelector('[data-masonry]');
-masonry.innerHTML = PORTFOLIO.map((p,i)=>`
-  <div class="pf-item" data-cat="${p.cat}">
-    <div class="frame tone-${p.tone}" style="aspect-ratio:${p.tall?'3/4':'4/3'};">
-      ${p.img ? `<img src="${p.img}" alt="${p.cap}">` : frameIconHTML(p.icon)}
-      <div class="pf-overlay">
-        <div class="pf-cat">${p.label}</div>
-        <h4>${p.cap}</h4>
-        <div class="pf-loc">${p.loc}</div>
-      </div>
-    </div>
-  </div>
-`).join('');
-
-document.querySelectorAll('[data-filter]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.pf-item').forEach(item=>{
-      const match = filter==='all' || item.dataset.cat===filter;
-      item.style.transition = 'opacity .35s ease, transform .35s ease';
-      if(match){ item.classList.remove('hide'); requestAnimationFrame(()=>{ item.style.opacity='1'; item.style.transform='scale(1)'; }); }
-      else{ item.style.opacity='0'; item.style.transform='scale(.96)'; setTimeout(()=> item.classList.add('hide'), 340); }
-    });
-  });
-});
 
 /* ============================================================
    FEATURED PROJECT — LIGHTBOX
