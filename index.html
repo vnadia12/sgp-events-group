@@ -624,14 +624,23 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   scrollbar-width:none;
 }
 .next-grid::-webkit-scrollbar{ display:none; }
-.next-card{ flex:0 0 auto; width:min(380px,80vw); scroll-snap-align:start; }
+/* .next-card{ flex:0 0 auto; width:min(380px,80vw); scroll-snap-align:start; } */
+.next-card{
+  flex:0 0 auto;
+  width:calc((100% - 56px) / 2.35);
+  min-width:250px;
+  scroll-snap-align:start;
+  transition: opacity .35s ease, transform .35s ease, box-shadow .4s var(--ease), border-color .4s var(--ease);
+}
+@media(max-width:760px){
+  .next-card{ width:calc((100% - 20px) / 1.15); min-width:220px; }
+}
 .next-card{
   background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:var(--radius-md); overflow:hidden;
   transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
   position:relative;
 }
 .next-card:hover{
-  transform:translateY(-10px) scale(1.02);
   box-shadow:0 34px 64px rgba(0,0,0,.2), 0 0 0 1px var(--brass);
   border-color:var(--brass);
 }
@@ -1764,6 +1773,33 @@ if (egTrack){
     if (e.key==='ArrowLeft') open((current-1+SHOWCASE_IMAGES.length)%SHOWCASE_IMAGES.length);
     if (e.key==='ArrowRight') open((current+1)%SHOWCASE_IMAGES.length);
   });
+})();
+   /* ============================================================
+   NEXT PROJECTS — coverflow-style dimming on scroll
+   ============================================================ */
+(function(){
+  const track = document.querySelector('.next-grid');
+  if (!track) return;
+  const cards = track.querySelectorAll('.next-card');
+
+  function updateCoverflow(){
+    const trackRect = track.getBoundingClientRect();
+    cards.forEach(card=>{
+      const r = card.getBoundingClientRect();
+      const visLeft = Math.max(r.left, trackRect.left);
+      const visRight = Math.min(r.right, trackRect.right);
+      const visWidth = Math.max(0, visRight - visLeft);
+      const ratio = Math.min(1, visWidth / r.width); // 0 = fully hidden, 1 = fully visible
+      const opacity = 0.32 + ratio * 0.68;
+      const scale = 0.9 + ratio * 0.1;
+      card.style.opacity = opacity.toFixed(2);
+      card.style.transform = `scale(${scale.toFixed(3)})`;
+    });
+  }
+
+  updateCoverflow();
+  track.addEventListener('scroll', ()=> requestAnimationFrame(updateCoverflow), {passive:true});
+  window.addEventListener('resize', updateCoverflow);
 })();
 </script>
 </body>
