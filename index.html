@@ -216,16 +216,30 @@ section{ position:relative; }
    ABOUT
    ============================================================ */
 .about{ background:var(--paper); padding:90px 0 80px; isolation:isolate; }
-.about-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:72px; align-items:start; isolation:isolate; }
-.about-copy p{ color:var(--text-muted); font-size:16px; margin-top:22px; max-width:52ch; isolation:isolate; }
-.about-copy h2{ font-size:clamp(30px,4vw,46px); max-width:14ch; isolation:isolate;}
-.about-services{
+/* .about-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:72px; align-items:start; isolation:isolate; } */
+.about-single{ max-width:820px; margin:0 auto; }
+/* .about-copy p{ color:var(--text-muted); font-size:16px; margin-top:22px; max-width:52ch; isolation:isolate; } */
+.about-copy p{ color:var(--text-muted); font-size:17px; line-height:1.8; margin-top:22px; max-width:62ch; }
+/* .about-copy h2{ font-size:clamp(30px,4vw,46px); max-width:14ch; isolation:isolate;} */
+.about-copy h2{ font-size:clamp(38px,5.5vw,64px); max-width:16ch; }
+/* .about-services{
   margin-top:38px; display:grid; grid-template-columns:1fr 1fr; gap:10px 28px; padding-top:26px; border-top:1px solid rgba(0,0,0,.12);
 }
 .about-services div{
   font-size:14.5px; font-weight:600; padding:9px 0; display:flex; align-items:center; gap:10px; color:var(--text-dark);
 }
-.about-services div::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--brass); flex-shrink:0; }
+.about-services div::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--brass); flex-shrink:0; } */
+.about-services{
+  margin-top:38px; display:flex; flex-wrap:wrap; gap:12px; padding-top:26px; border-top:1px solid rgba(0,0,0,.12);
+}
+.about-services div{
+  font-size:13.5px; font-weight:600; padding:10px 18px; border-radius:999px; border:1px solid rgba(0,0,0,.15);
+  color:var(--text-dark); display:flex; align-items:center; gap:8px; cursor:default;
+  transition: background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease), color .3s var(--ease);
+}
+.about-services div::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--brass); flex-shrink:0; transition:background .3s; }
+.about-services div:hover{ background:var(--ink); color:var(--text-on-ink); border-color:var(--ink); transform:translateY(-3px); }
+.about-services div:hover::before{ background:var(--brass-light); }
 .about-collage{ position:relative; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .about-collage .frame:nth-child(1){ aspect-ratio:3/4; grid-row:span 2; }
 .about-collage .frame:nth-child(2){ aspect-ratio:1/1; margin-top:44px; }
@@ -676,6 +690,11 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   background:var(--paper); opacity:.30;
 }
 .about-grid{ position:relative; z-index:1; }
+.about-lead{ font-size:19px; line-height:1.75; color:var(--text-dark); }
+.about-lead::first-letter{
+  font-family:'Fraunces',serif; font-size:3.2em; font-weight:500; float:left;
+  line-height:.82; padding-right:10px; padding-top:4px; color:var(--brass);
+}
 </style>
 </head>
 <body>
@@ -746,16 +765,11 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
      ABOUT
      ============================================================ -->
 <section class="about" id="about">
-  <div class="about-video-bg">
-  <video autoplay muted loop playsinline>
-    <source src="images/about-bg.mp4" type="video/mp4">
-  </video>
-</div>
-  <div class="container about-grid">
-    <div class="about-copy reveal">
+  <div class="container about-single">
+    <div class="about-copy reveal-stagger">
       <div class="eyebrow">About SGP</div>
       <h2>An event organizer built around one idea — get every detail right.</h2>
-      <p>SGP Events Group is a Indonesian-based event organizer and management company. We help clients plan, build, and run events from the first concept sketch to the last guest leaving the room — covering everything a serious event needs and nothing it doesn't.</p>
+      <p class="about-lead">SGP Events Group is a Singapore-based event organizer and management company. We help clients plan, build, and run events from the first concept sketch to the last guest leaving the room.</p>
       <p>We work across two worlds at once: structured corporate programs that need precision, and personal celebrations — gala dinners, wedding anniversaries, milestone birthdays — that need warmth and a distinct visual signature. Both get the same standard of planning, delivered in our signature black, white, and gold.</p>
       <div class="about-services">
         <div>Event planning</div>
@@ -764,17 +778,6 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
         <div>Event management</div>
         <div>Vendor coordination</div>
         <div>On-site execution</div>
-      </div>
-    </div>
-    <div class="about-collage reveal">
-      <div class="frame tone-b">
-        <div class="frame-icon" style="left:24px; bottom:24px; width:30px; height:30px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="7" width="18" height="12" rx="1"/><circle cx="12" cy="13" r="3.2"/><path d="M8 7l1.6-2.5h4.8L16 7"/></svg></div>
-      </div>
-      <div class="frame tone-d">
-        <div class="frame-icon" style="right:22px; top:22px; width:28px; height:28px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M4 20c1-4 4-6 8-6s7 2 8 6"/><circle cx="12" cy="8" r="4"/></svg></div>
-      </div>
-      <div class="frame tone-e">
-        <div class="frame-icon" style="left:22px; top:22px; width:28px; height:28px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
       </div>
     </div>
   </div>
