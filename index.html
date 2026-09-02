@@ -1743,7 +1743,7 @@ if (egTrack){
     if (e.key==='ArrowRight') open((current+1)%SHOWCASE_IMAGES.length);
   });
 })();
-   /* ============================================================
+/* ============================================================
    NEXT PROJECTS — coverflow-style dimming on scroll
    ============================================================ */
 (function(){
@@ -1758,7 +1758,7 @@ if (egTrack){
       const visLeft = Math.max(r.left, trackRect.left);
       const visRight = Math.min(r.right, trackRect.right);
       const visWidth = Math.max(0, visRight - visLeft);
-      const ratio = Math.min(1, visWidth / r.width); // 0 = fully hidden, 1 = fully visible
+      const ratio = Math.min(1, visWidth / r.width);
       const opacity = 0.32 + ratio * 0.68;
       const scale = 0.9 + ratio * 0.1;
       card.style.opacity = opacity.toFixed(2);
@@ -1769,7 +1769,9 @@ if (egTrack){
   updateCoverflow();
   track.addEventListener('scroll', ()=> requestAnimationFrame(updateCoverflow), {passive:true});
   window.addEventListener('resize', updateCoverflow);
-  /* ============================================================
+})();
+
+/* ============================================================
    NEXT PROJECTS — arrow scroll (unlimited, works alongside drag/swipe)
    ============================================================ */
 (function(){
@@ -1788,7 +1790,7 @@ if (egTrack){
 
   prevBtn.addEventListener('click', ()=>{
     if (atStart()){
-      track.scrollTo({left: track.scrollWidth, behavior:'smooth'}); // loop to the end
+      track.scrollTo({left: track.scrollWidth, behavior:'smooth'});
     } else {
       track.scrollBy({left:-scrollAmount(), behavior:'smooth'});
     }
@@ -1796,7 +1798,7 @@ if (egTrack){
 
   nextBtn.addEventListener('click', ()=>{
     if (atEnd()){
-      track.scrollTo({left:0, behavior:'smooth'}); // loop back to the start
+      track.scrollTo({left:0, behavior:'smooth'});
     } else {
       track.scrollBy({left:scrollAmount(), behavior:'smooth'});
     }
