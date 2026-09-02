@@ -689,7 +689,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   content:''; position:absolute; inset:0;
   background:var(--paper); opacity:.30;
 }
-.about-grid{ position:relative; z-index:1; }
+.about-single{ position:relative; z-index:1; }
 .about-lead{ font-size:19px; line-height:1.75; color:var(--text-dark); }
 .about-lead::first-letter{
   font-family:'Fraunces',serif; font-size:3.2em; font-weight:500; float:left;
@@ -765,6 +765,11 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
      ABOUT
      ============================================================ -->
 <section class="about" id="about">
+  <div class="about-video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="images/about-bg.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="container about-single">
     <div class="about-copy reveal-stagger">
       <div class="eyebrow">About SGP</div>
