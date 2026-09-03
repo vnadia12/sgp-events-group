@@ -802,6 +802,7 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
 .mobile-subsubmenu a{ font-family:'Manrope',sans-serif; font-size:16px; padding:8px 0; color:var(--text-on-ink-muted); }
 .tl-item{ cursor:pointer; }
 .tl-subtimeline{
+  grid-column: 1 / -1;
   max-height:0; overflow:hidden; opacity:0;
   transition:max-height .5s var(--ease), opacity .4s var(--ease), margin-top .4s var(--ease);
   margin-top:0; margin-left:84px;
