@@ -838,3 +838,9 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
   background:var(--brass); transition:width 1s var(--ease) .3s;
 }
 .about-event-copy.is-visible .theme-highlight::after{ width:100%; }
+.about-event-copy > *{
+  transition-duration: 1.4s;
+  transform: translateY(28px);
+}
+.about-event-copy.is-visible > *:nth-child(1){ transition-delay: .1s; }
+.about-event-copy.is-visible > *:nth-child(2){ transition-delay: .9s; }
