@@ -679,6 +679,19 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
 .eg-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
 .eg-thumb.active{ opacity:1; border-color:var(--brass); }
 
+/* ============================================================
+   FULL GALLERY PAGE
+   ============================================================ */
+.gallery-page{ padding:160px 0 100px; background:var(--paper); min-height:60vh; }
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
+  gap:20px;
+}
+.gallery-grid .frame{ aspect-ratio:4/5; cursor:zoom-in; }
+.gallery-grid .frame img{ transition:transform .6s var(--ease); }
+.gallery-grid .frame:hover img{ transform:scale(1.06); }
+
 .logo-link{ display:inline-block; line-height:0; }
 .logo-img{ height:58px; width:auto; display:block; }
 .footer-brand .logo-img{ height:44px; margin-bottom:16px; }

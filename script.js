@@ -571,3 +571,64 @@ if (egTrack){
     if (e.key==='ArrowRight') open((current+1)%SHOWCASE_IMAGES.length);
   });
 })();
+
+/* ============================================================
+   FULL GALLERY PAGE — grid + lightbox (only runs if #galleryGrid exists)
+   ============================================================ */
+(function(){
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+
+  const images = (typeof GALLERY_PAGE_IMAGES !== 'undefined' ? GALLERY_PAGE_IMAGES : []);
+
+  grid.innerHTML = images.map((filename, i)=>`
+    <div class="gallery-tile" data-gp-item data-index="${i}">
+      <div class="frame tone-${TONES[i % TONES.length]}">
+        <img src="gallery/${filename}" alt="" loading="lazy">
+      </div>
+    </div>
+  `).join('');
+
+  const lightbox = document.getElementById('galleryPageLightbox');
+  const imgEl = document.getElementById('galleryPageImg');
+  const thumbsWrap = document.getElementById('galleryPageThumbs');
+  if (!lightbox || !imgEl || !thumbsWrap) return;
+
+  thumbsWrap.innerHTML = images.map((filename, i)=>`
+    <div class="eg-thumb" data-gp-thumb="${i}"><img src="gallery/${filename}" alt="" loading="lazy"></div>
+  `).join('');
+  const thumbs = thumbsWrap.querySelectorAll('[data-gp-thumb]');
+
+  let current = 0;
+  function open(i){
+    current = i;
+    imgEl.src = `gallery/${images[i]}`;
+    imgEl.alt = '';
+    thumbs.forEach((t,ti)=> t.classList.toggle('active', ti===i));
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  grid.querySelectorAll('[data-gp-item]').forEach(el=>{
+    el.addEventListener('click', ()=> open(+el.dataset.index));
+  });
+  thumbs.forEach(t=> t.addEventListener('click', ()=> open(+t.dataset.gpThumb)));
+
+  const gpClose = document.querySelector('[data-gp-close]');
+  const gpPrev = document.querySelector('[data-gp-prev]');
+  const gpNext = document.querySelector('[data-gp-next]');
+  if (gpClose) gpClose.addEventListener('click', close);
+  if (gpPrev) gpPrev.addEventListener('click', ()=> open((current-1+images.length)%images.length));
+  if (gpNext) gpNext.addEventListener('click', ()=> open((current+1)%images.length));
+  lightbox.addEventListener('click', e=>{ if (e.target===lightbox) close(); });
+  document.addEventListener('keydown', e=>{
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key==='Escape') close();
+    if (e.key==='ArrowLeft') open((current-1+images.length)%images.length);
+    if (e.key==='ArrowRight') open((current+1)%images.length);
+  });
+})();
