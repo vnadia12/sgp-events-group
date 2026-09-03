@@ -140,23 +140,29 @@ const GALLERY_ITEMS = [
    ============================================================ */
 const nav = document.getElementById('nav');
 const backTop = document.getElementById('backTop');
-window.addEventListener('scroll', ()=>{
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-  backTop.classList.toggle('show', window.scrollY > 700);
-}, {passive:true});
+if (nav && backTop){
+  window.addEventListener('scroll', ()=>{
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    backTop.classList.toggle('show', window.scrollY > 700);
+  }, {passive:true});
+}
 
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
-burger.addEventListener('click', ()=>{
-  burger.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
-  burger.classList.remove('open'); mobileMenu.classList.remove('open');
-}));
+if (burger && mobileMenu){
+  burger.addEventListener('click', ()=>{
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    burger.classList.remove('open'); mobileMenu.classList.remove('open');
+  }));
+}
 
 /* Back to top */
-backTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+if (backTop){
+  backTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+}
 
 /* ============================================================
    NAV — Events submenu (mobile accordion toggle)
@@ -286,28 +292,33 @@ const lightbox = document.getElementById('lightbox');
 const lightboxFrame = document.getElementById('lightboxFrame');
 let lbIndex = 0;
 
-function openLightbox(i){
-  lbIndex = i;
-  const src = galleryFrames[i];
-  const tone = Array.from(src.classList).find(c=>c.startsWith('tone-'));
-  lightboxFrame.className = 'frame ' + tone;
-  const img = src.querySelector('img');
-  lightboxFrame.innerHTML = img ? `<img src="${img.src}" alt="${img.alt||''}">` : '';
-  lightbox.classList.add('open');
-  document.body.style.overflow='hidden';
+if (lightbox && lightboxFrame){
+  function openLightbox(i){
+    lbIndex = i;
+    const src = galleryFrames[i];
+    const tone = Array.from(src.classList).find(c=>c.startsWith('tone-'));
+    lightboxFrame.className = 'frame ' + tone;
+    const img = src.querySelector('img');
+    lightboxFrame.innerHTML = img ? `<img src="${img.src}" alt="${img.alt||''}">` : '';
+    lightbox.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; }
+  galleryFrames.forEach((el,i)=> el.addEventListener('click', ()=> openLightbox(i)));
+  const lbClose = document.querySelector('[data-lb-close]');
+  const lbPrev = document.querySelector('[data-lb-prev]');
+  const lbNext = document.querySelector('[data-lb-next]');
+  if (lbClose) lbClose.addEventListener('click', closeLightbox);
+  if (lbPrev) lbPrev.addEventListener('click', ()=> openLightbox((lbIndex-1+galleryFrames.length)%galleryFrames.length));
+  if (lbNext) lbNext.addEventListener('click', ()=> openLightbox((lbIndex+1)%galleryFrames.length));
+  lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e=>{
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key==='Escape') closeLightbox();
+    if(e.key==='ArrowLeft') openLightbox((lbIndex-1+galleryFrames.length)%galleryFrames.length);
+    if(e.key==='ArrowRight') openLightbox((lbIndex+1)%galleryFrames.length);
+  });
 }
-function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; }
-galleryFrames.forEach((el,i)=> el.addEventListener('click', ()=> openLightbox(i)));
-document.querySelector('[data-lb-close]').addEventListener('click', closeLightbox);
-document.querySelector('[data-lb-prev]').addEventListener('click', ()=> openLightbox((lbIndex-1+galleryFrames.length)%galleryFrames.length));
-document.querySelector('[data-lb-next]').addEventListener('click', ()=> openLightbox((lbIndex+1)%galleryFrames.length));
-lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLightbox(); });
-document.addEventListener('keydown', e=>{
-  if(!lightbox.classList.contains('open')) return;
-  if(e.key==='Escape') closeLightbox();
-  if(e.key==='ArrowLeft') openLightbox((lbIndex-1+galleryFrames.length)%galleryFrames.length);
-  if(e.key==='ArrowRight') openLightbox((lbIndex+1)%galleryFrames.length);
-});
 
 /* ============================================================
    ANIMATED COUNTER
@@ -336,19 +347,23 @@ document.querySelectorAll('[data-counter]').forEach(el=>{
    CLIENTS LOGO MARQUEE — duplicate track for seamless loop
    ============================================================ */
 const logoTrack = document.getElementById('logoTrack');
-logoTrack.innerHTML += logoTrack.innerHTML;
+if (logoTrack){
+  logoTrack.innerHTML += logoTrack.innerHTML;
+}
 
 /* ============================================================
    CONTACT FORM (mock submit)
    ============================================================ */
 const form = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
-form.addEventListener('submit', e=>{
-  e.preventDefault();
-  formNote.classList.add('show');
-  form.reset();
-  setTimeout(()=> formNote.classList.remove('show'), 5000);
-});
+if (form && formNote){
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    formNote.classList.add('show');
+    form.reset();
+    setTimeout(()=> formNote.classList.remove('show'), 5000);
+  });
+}
 
 /* ============================================================
    NEXT PROJECTS — lightweight "X days to go" badge (no ticking clock)
