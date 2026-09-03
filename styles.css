@@ -433,9 +433,18 @@ section{ position:relative; }
   transition:background .4s,color .4s,border-color .4s;
 }
 .tl-item.is-visible .tl-num{ background:var(--brass); color:#161310; border-color:var(--brass); }
-.tl-body{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
-.tl-body h3{ font-size:26px; margin-bottom:8px; }
-.tl-body p{ color:var(--text-muted); max-width:46ch; font-size:15px; }
+/* .tl-body{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; } */
+.tl-body{
+  display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  background: rgba(248,246,242,.9);
+  backdrop-filter: blur(6px);
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+}
+/* .tl-body h3{ font-size:26px; margin-bottom:8px; }
+.tl-body p{ color:var(--text-muted); max-width:46ch; font-size:15px; } */
+.tl-body h3{ font-size:26px; margin-bottom:8px; color:var(--text-dark); }
+.tl-body p{ color:var(--text-dark); opacity:.75; max-width:46ch; font-size:15px; }
 .tl-tag{ font-size:12px; font-weight:700; color:var(--brass-dim); letter-spacing:.04em; white-space:nowrap; padding-top:6px; }
 
 /* ============================================================
@@ -812,6 +821,6 @@ footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:80px 0 30
 }
 .process-bg-image::after{
   content:''; position:absolute; inset:0;
-  background:var(--paper); opacity:.25;
+  background:var(--paper); opacity:.35;
 }
 .process .container{ position:relative; z-index:1; }
