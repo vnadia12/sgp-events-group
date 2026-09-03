@@ -319,6 +319,15 @@ if (lightbox && lightboxFrame){
     if(e.key==='ArrowRight') openLightbox((lbIndex+1)%galleryFrames.length);
   });
 }
+/* ============================================================
+   NAV — nested "Upcoming Events" submenu (mobile accordion toggle)
+   ============================================================ */
+document.querySelectorAll('.mobile-subdropdown-btn').forEach(btn=>{
+  btn.addEventListener('click', e=>{
+    e.stopPropagation();
+    btn.closest('.mobile-subnav-item').classList.toggle('open');
+  });
+});
 
 /* ============================================================
    ANIMATED COUNTER
