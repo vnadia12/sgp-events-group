@@ -66,11 +66,30 @@
 </div>
 
 <!-- ============================================================
-     GALLERY CONTENT — blank for now
+     GALLERY CONTENT
      ============================================================ -->
-<main style="min-height:60vh; padding-top:160px;">
-  <!-- content coming soon -->
+<main class="gallery-page">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Full Event Gallery</h2>
+      <p class="lede">Every moment, in one place. Click any photo to view it larger.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- tiles injected by JS from GALLERY_PAGE_IMAGES -->
+    </div>
+  </div>
 </main>
+
+<!-- Full Gallery Lightbox -->
+<div class="eg-lightbox" id="galleryPageLightbox">
+  <div class="eg-lightbox-inner">
+    <button class="lightbox-close" data-gp-close><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lightbox-prev" data-gp-prev><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="eg-lightbox-main"><img id="galleryPageImg" src="" alt=""></div>
+    <button class="lightbox-next" data-gp-next><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="eg-lightbox-thumbs" id="galleryPageThumbs"></div>
+  </div>
+</div>
 
 <!-- ============================================================
      FOOTER
@@ -116,6 +135,7 @@
 
 <button class="back-top" id="backTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
+<script src="gallery-images.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
