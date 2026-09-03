@@ -641,3 +641,13 @@ if (egTrack){
     if (e.key==='ArrowRight') open((current+1)%images.length);
   });
 })();
+
+/* ============================================================
+   EVENING SCHEDULE — tap-to-toggle sub-timeline (mobile support
+   alongside the CSS hover that already works on desktop)
+   ============================================================ */
+document.querySelectorAll('[data-tl-toggle]').forEach(item=>{
+  item.addEventListener('click', ()=>{
+    item.classList.toggle('open');
+  });
+});
