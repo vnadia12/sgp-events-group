@@ -30,6 +30,40 @@ function frame(tone, icon, cap, small, imgUrl){
 
 const TONES = ['a','b','c','d','e','f'];
 
+<script>
+function addToGoogleCalendar(event, element) {
+  event.preventDefault();
+
+  const title = element.dataset.title;
+  const start = element.dataset.start;
+  const end = element.dataset.end;
+  const location = element.dataset.location || "";
+  const description = element.dataset.description || "";
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    return date.getUTCFullYear() +
+      String(date.getUTCMonth() + 1).padStart(2, '0') +
+      String(date.getUTCDate()).padStart(2, '0') +
+      'T' +
+      String(date.getUTCHours()).padStart(2, '0') +
+      String(date.getUTCMinutes()).padStart(2, '0') +
+      String(date.getUTCSeconds()).padStart(2, '0') +
+      'Z';
+  }
+
+  const googleCalendarUrl =
+    'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(title) +
+    '&dates=' + formatDate(start) + '/' + formatDate(end) +
+    '&details=' + encodeURIComponent(description) +
+    '&location=' + encodeURIComponent(location);
+
+  window.open(googleCalendarUrl, '_blank');
+}
+</script>
+
 /* ============================================================
    HERO — floating bokeh particles
    ============================================================ */
