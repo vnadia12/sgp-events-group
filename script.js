@@ -30,7 +30,6 @@ function frame(tone, icon, cap, small, imgUrl){
 
 const TONES = ['a','b','c','d','e','f'];
 
-<script>
 function addToGoogleCalendar(event, element) {
   event.preventDefault();
 
@@ -62,7 +61,6 @@ function addToGoogleCalendar(event, element) {
 
   window.open(googleCalendarUrl, '_blank');
 }
-</script>
 
 /* ============================================================
    HERO — floating bokeh particles
